@@ -1,12 +1,16 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import { Navbar } from '@/components/index'
+import { Head, Html, Main, NextScript } from 'next/document'
 
 export default function Document() {
   return (
     <Html lang="en">
       <Head />
+      <title>Rented</title>
       <body>
+        <Navbar />
         <Main />
         <NextScript />
+        Footer
       </body>
     </Html>
   )
