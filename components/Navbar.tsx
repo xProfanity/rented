@@ -11,9 +11,7 @@ import { useRouter } from "next/router";
 export default function Navbar() {
     const {asPath} = useRouter()
 
-    const {navOpen, handleNavOpen}: any = useStateContext()
-
-    console.log('navOpen', navOpen)
+    const {navOpen, handleNavOpen, handleLogin}: any = useStateContext()
 
   return (
     <nav className="h-20 w-full flex-1">
@@ -26,7 +24,7 @@ export default function Navbar() {
                     alt="rented"
                 />
             </Link>
-            <div className="h-full flex-wrap bg-gray-200 rounded-full hidden md:block">
+            <div className="h-[80%] flex-wrap bg-gray-200 rounded-full hidden md:block">
                 <ul className="w-[35rem] flex flex-row justify-center items-center h-full gap-20">
                     {menu.map((item, index) => (
                         <li key={index}>
@@ -40,7 +38,7 @@ export default function Navbar() {
                 </ul>
             </div>
             <div className="hidden md:block">
-                <button type="button" className="flex flex-row justify-center items-center gap-2">
+                <button onClick={handleLogin} type="button" className="flex flex-row justify-center items-center gap-2">
                     <AiOutlineLogin />
                     <p>Login</p>
                 </button>
