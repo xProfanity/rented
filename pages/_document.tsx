@@ -1,4 +1,3 @@
-import { Navbar } from '@/components/index'
 import { Head, Html, Main, NextScript } from 'next/document'
 
 export default function Document() {
@@ -7,10 +6,8 @@ export default function Document() {
       <Head />
       <title>Rented</title>
       <body>
-        <Navbar />
         <Main />
         <NextScript />
-        Footer
       </body>
     </Html>
   )
