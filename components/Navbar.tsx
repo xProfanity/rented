@@ -1,11 +1,15 @@
 "use client"
 
 import Image from "next/image";
+import Link from "next/link";
+import { AiOutlineLogin, AiOutlineMenu } from "react-icons/ai";
 
 import { RentedColor, menu } from '@/assets';
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
+    const {asPath} = useRouter()
+
   return (
     <nav className="h-20 w-full flex-1">
         <div className="h-full w-[95%] flex flex-row justify-between items-center mx-auto">
@@ -21,7 +25,7 @@ export default function Navbar() {
                 <ul className="w-[35rem] flex flex-row justify-center items-center h-full gap-20">
                     {menu.map((item, index) => (
                         <li key={index}>
-                            <Link href={`#${item}`}>
+                            <Link href={`#${item.toLowerCase()}`} className={`${asPath === `/#${item.toLowerCase()}` ? "text-[#010536] font-bold" : "font-bold text-sm"}`}> 
                                 {item}
                             </Link>
                         </li>
@@ -29,13 +33,14 @@ export default function Navbar() {
                 </ul>
             </div>
             <div className="hidden md:block">
-                <button type="button">
-                    Login
+                <button type="button" className="flex flex-row justify-center items-center gap-2">
+                    <AiOutlineLogin />
+                    <p>Login</p>
                 </button>
             </div>
             <div className="block md:hidden">
                 <button>
-                    Menu
+                    <AiOutlineMenu className="h-10 w-10" />
                 </button>
             </div>
         </div>

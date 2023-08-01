@@ -5,6 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <title>Rented</title>
+      <link rel='icon' href='/logo.png' type='image/png'/>
       <body>
         <Main />
         <NextScript />
