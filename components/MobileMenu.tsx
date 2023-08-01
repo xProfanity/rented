@@ -1,7 +1,7 @@
 import { useStateContext } from "@/context/StateContext"
 import Image from "next/image"
 
-import { AiOutlineLogin } from "react-icons/ai"
+import { AiOutlineLogin, AiOutlineLogout } from "react-icons/ai"
 import { BsX } from "react-icons/bs"
 
 import { RentedColor, menu } from "@/assets"
@@ -9,10 +9,8 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 
 export default function MobileMenu() {
-    const {navOpen, handleNavOpen, handleLogin}: any = useStateContext()
+    const {navOpen, handleNavOpen, handleLogin, handleLogout, user}: any = useStateContext()
     const {asPath} = useRouter()
-
-    const user = null
 
   return (
     <div className={`fixed h-screen w-full top-0 ${navOpen ? 'block' : 'hidden'}`}>
@@ -32,7 +30,27 @@ export default function MobileMenu() {
 
             <div className="mt-2 w-[90%] mx-auto flex flex-col">
                 {user ? (
-                    <p>User</p>
+                    <div className="flex flex-row justify-between items-center">
+                        <div className="flex flex-col justify-center items-start gap-2">
+                            <Image 
+                                src={user?.image}
+                                height={50}
+                                width={50}
+                                alt={`${user?.name} profile`}
+                                className="object-contain rounded-full"
+                            />
+                            <div>
+                                <p className="font-bold text-lg ">{user?.name}</p>
+                                <p className="text-sm text-gray-500">{user?.email}</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button type="button" onClick={handleLogout}>
+                                <AiOutlineLogout size={30} color="red"/>
+                            </button>
+                        </div>
+                    </div>
                 ) : (
                     <button onClick={handleLogin} className="w-[70%] mx-auto flex flex-row justify-center items-center gap-2 bg-[#010536] h-10 text-white rounded-full">
                         <AiOutlineLogin />

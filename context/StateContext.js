@@ -1,4 +1,4 @@
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { createContext, useContext, useEffect, useState } from "react";
 
 
@@ -20,11 +20,19 @@ export const StateContext = ({children}) => {
         }
     }
 
+    const handleLogout = async () => {
+        try {
+            await signOut()
+        } catch (error) {
+            console.log('error', error)
+        }
+    }
+
     useEffect(() => setUser(data?.user), [data])
 
     return <ApplicationState.Provider value={{
         navOpen, handleNavOpen,
-        handleLogin,
+        handleLogin, handleLogout,
         user
     }}>
         {children}

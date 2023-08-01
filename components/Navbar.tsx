@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { AiOutlineLogin, AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineLogin, AiOutlineLogout, AiOutlineMenu } from "react-icons/ai";
 
 import { RentedColor, menu } from '@/assets';
 import { useStateContext } from "@/context/StateContext";
@@ -11,7 +11,7 @@ import { useStateContext } from "@/context/StateContext";
 export default function Navbar() {
     const {asPath} = useRouter()
 
-    const {navOpen, handleNavOpen, handleLogin, user}: any = useStateContext()
+    const {navOpen, handleNavOpen, handleLogin, user, handleLogout}: any = useStateContext()
 
   return (
     <nav className="h-20 w-full flex-1">
@@ -39,7 +39,18 @@ export default function Navbar() {
             </div>
             <div className="hidden md:block">
                 {user ? (
-                    <p>{user?.name}</p>
+                    <div className="flex flex-row justify-center items-center gap-3">
+                        <Image
+                            src={user?.image}
+                            height={50}
+                            width={50}
+                            alt={`${user?.name} profile`}
+                            className="object-contain rounded-full"
+                        />
+                        <button type="button" onClick={handleLogout}>
+                            <AiOutlineLogout color="red"/>
+                        </button>
+                    </div>
                 ) : (
                     <button onClick={handleLogin} type="button" className="flex flex-row justify-center items-center gap-2">
                         <AiOutlineLogin />

@@ -10,6 +10,9 @@ const nextConfig = {
     SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
     SANITY_PROJECT_TOKEN: process.env.SANITY_PROJECT_TOKEN,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+  },
+  images: {
+    domains: ["lh3.googleusercontent.com"]
   }
 }
 
