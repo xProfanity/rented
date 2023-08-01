@@ -1,6 +1,7 @@
 import { useStateContext } from "@/context/StateContext"
 import Image from "next/image"
 
+import { AiOutlineLogin } from "react-icons/ai"
 import { BsX } from "react-icons/bs"
 
 import { RentedColor } from "@/assets"
@@ -8,6 +9,7 @@ import { RentedColor } from "@/assets"
 export default function MobileMenu() {
     const {navOpen, handleNavOpen}: any = useStateContext()
 
+    const user = null
 
   return (
     <div className="fixed h-screen w-full top-0">
@@ -23,6 +25,17 @@ export default function MobileMenu() {
                 <button>
                     <BsX className="h-12 w-12" />
                 </button>
+            </div>
+
+            <div className="mt-2 w-[90%] mx-auto flex flex-col">
+                {user ? (
+                    <p>User</p>
+                ) : (
+                    <button className="w-[70%] mx-auto flex flex-row justify-center items-center gap-2 bg-[#010536] h-10 text-white rounded-full">
+                        <AiOutlineLogin />
+                        <p>Login</p>
+                    </button>
+                )}
             </div>
         </div>
     </div>
