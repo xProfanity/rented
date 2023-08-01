@@ -4,10 +4,13 @@ import Image from "next/image"
 import { AiOutlineLogin } from "react-icons/ai"
 import { BsX } from "react-icons/bs"
 
-import { RentedColor } from "@/assets"
+import { RentedColor, menu } from "@/assets"
+import Link from "next/link"
+import { useRouter } from "next/router"
 
 export default function MobileMenu() {
     const {navOpen, handleNavOpen}: any = useStateContext()
+    const {asPath} = useRouter()
 
     const user = null
 
@@ -36,6 +39,24 @@ export default function MobileMenu() {
                         <p>Login</p>
                     </button>
                 )}
+            </div>
+
+            <div className="mt-4 w-[90%] mx-auto">
+                <ul className="w-full flex flex-col">
+                    {
+                        menu.map((item, index) => (
+                            <li key={index} className="h-10 w-full flex flex-col justify-center items-center">
+                                <button>
+                                    <Link href={`#${item.toLowerCase()}`}>
+                                        <p className={`${asPath === `/#${item.toLowerCase()}` ? "text-[#010536] font-bold" : "font-bold text-sm"}`}>
+                                        {item}
+                                    </p>
+                                    </Link>
+                                </button>
+                            </li>
+                        ))
+                    }
+                </ul>
             </div>
         </div>
     </div>
