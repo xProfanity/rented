@@ -15,8 +15,8 @@ export default function MobileMenu() {
     const user = null
 
   return (
-    <div className="fixed h-screen w-full top-0">
-        <div className="h-screen w-full bg-black opacity-50 absolute top-0 left-0"/>
+    <div className={`fixed h-screen w-full top-0 ${navOpen ? 'block' : 'hidden'}`}>
+        <div onClick={handleNavOpen} className="h-screen w-full bg-black opacity-50 absolute top-0 left-0"/>
         <div className="fixed z-50 right-0 shadow-lg shadow-black top-0 h-screen w-[25rem] bg-gray-300 flex flex-col">
             <div className="h-20 w-[90%] flex mx-auto flex-row justify-between items-center">
                 <Image 
@@ -25,7 +25,7 @@ export default function MobileMenu() {
                     width={115}
                     alt="rented"
                 />
-                <button>
+                <button onClick={handleNavOpen}>
                     <BsX className="h-12 w-12" />
                 </button>
             </div>
@@ -57,6 +57,10 @@ export default function MobileMenu() {
                         ))
                     }
                 </ul>
+            </div>
+        
+            <div className="mt-52 w-[90%] mx-auto flex flex-row justify-end items-center">
+                <p className="text-gray-500 text-sm">&copy;copyright 2023</p>
             </div>
         </div>
     </div>
