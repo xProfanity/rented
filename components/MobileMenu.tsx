@@ -13,7 +13,7 @@ export default function MobileMenu() {
     const {asPath} = useRouter()
 
   return (
-    <div className={`fixed h-screen w-full top-0 ${navOpen ? 'block' : 'hidden'}`}>
+    <div className={`fixed z-50 h-screen w-full top-0 ${navOpen ? 'block' : 'hidden'}`}>
         <div onClick={handleNavOpen} className="h-screen w-full bg-black opacity-50 absolute top-0 left-0"/>
         <div className="fixed z-50 right-0 shadow-lg shadow-black top-0 h-screen w-[25rem] bg-white flex flex-col">
             <div className="h-20 w-[90%] flex mx-auto flex-row justify-between items-center">

@@ -1,7 +1,6 @@
+import Footer from './Footer'
 import MobileMenu from './MobileMenu'
 import Navbar from './Navbar'
 
-export {
-    MobileMenu, Navbar
-}
+export { Footer, MobileMenu, Navbar }
 

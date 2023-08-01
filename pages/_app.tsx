@@ -1,4 +1,4 @@
-import { MobileMenu, Navbar } from '@/components'
+import { Footer, MobileMenu, Navbar } from '@/components'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 
@@ -12,7 +12,7 @@ export default function App({ Component, pageProps: {session, ...pageProps} }: A
         <Navbar />
         <MobileMenu />
         <Component {...pageProps} />
-        <p>Footer</p>
+        <Footer />
       </StateContext>
     </SessionProvider>
   )

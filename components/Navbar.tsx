@@ -11,10 +11,10 @@ import { useStateContext } from "@/context/StateContext";
 export default function Navbar() {
     const {asPath} = useRouter()
 
-    const {navOpen, handleNavOpen, handleLogin, user, handleLogout}: any = useStateContext()
+    const {handleNavOpen, handleLogin, user, handleLogout}: any = useStateContext()
 
   return (
-    <nav className="h-20 w-full flex-1">
+    <nav className="h-20 w-full flex-1 z-40 backdrop-blur-sm border-b-2 border-white fixed">
         <div className="h-full w-[95%] flex flex-row justify-between items-center mx-auto">
             <Link href={'/'}>
                 <Image
