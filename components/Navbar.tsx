@@ -52,9 +52,9 @@ export default function Navbar() {
                         </button>
                     </div>
                 ) : (
-                    <button onClick={handleLogin} type="button" className="flex flex-row justify-center items-center gap-2">
-                        <AiOutlineLogin />
-                        <p>Login</p>
+                    <button onClick={handleLogin} type="button" className="flex bg-[#010536] p-4 rounded-full flex-row justify-center items-center gap-2">
+                        <AiOutlineLogin color="white" size={18}/>
+                        <p className="text-white text-sm font-bold">Login</p>
                     </button>
                 )}
             </div>
