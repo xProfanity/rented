@@ -30,8 +30,10 @@ export default function Navbar() {
                 <ul className="w-[35rem] flex flex-row justify-center items-center h-full gap-20">
                     {menu.map((item, index) => (
                         <li key={index}>
-                            <Link href={`#${item.toLowerCase()}`} className={`${asPath === `/#${item.toLowerCase()}` ? "text-[#010536] font-bold" : "font-bold text-sm"}`}>
-                                {item}
+                            <Link href={`#${item.toLowerCase()}`}>
+                                <p className={`${asPath === `/#${item.toLowerCase()}` ? "text-[#010536] font-bold" : "font-bold text-sm"}`}>
+                                    {item}
+                                </p>
                             </Link>
                         </li>
                     ))}
