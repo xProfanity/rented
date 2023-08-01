@@ -11,4 +11,10 @@ export const authOptions = {
         colorScheme: 'light',
         logo: '/rented-color.png'
     },
+    callbacks: {
+        async signIn({user}) {
+            console.log('user', user)
+        }
+    },
+    secret: process.env.NEXTAUTH_SECRET
 }
