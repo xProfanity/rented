@@ -5,10 +5,15 @@ import Link from "next/link";
 import { AiOutlineLogin, AiOutlineMenu } from "react-icons/ai";
 
 import { RentedColor, menu } from '@/assets';
+import { useStateContext } from "@/context/StateContext";
 import { useRouter } from "next/router";
 
 export default function Navbar() {
     const {asPath} = useRouter()
+
+    const {navOpen, handleNavOpen}: any = useStateContext()
+
+    console.log('navOpen', navOpen)
 
   return (
     <nav className="h-20 w-full flex-1">
@@ -25,7 +30,7 @@ export default function Navbar() {
                 <ul className="w-[35rem] flex flex-row justify-center items-center h-full gap-20">
                     {menu.map((item, index) => (
                         <li key={index}>
-                            <Link href={`#${item.toLowerCase()}`} className={`${asPath === `/#${item.toLowerCase()}` ? "text-[#010536] font-bold" : "font-bold text-sm"}`}> 
+                            <Link href={`#${item.toLowerCase()}`} className={`${asPath === `/#${item.toLowerCase()}` ? "text-[#010536] font-bold" : "font-bold text-sm"}`}>
                                 {item}
                             </Link>
                         </li>
@@ -39,7 +44,7 @@ export default function Navbar() {
                 </button>
             </div>
             <div className="block md:hidden">
-                <button>
+                <button onClick={handleNavOpen}>
                     <AiOutlineMenu className="h-10 w-10" />
                 </button>
             </div>
