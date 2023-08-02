@@ -7,3 +7,11 @@ export async function findUserByEmail(email) {
 
     return results
 }
+
+export async function grabHouses() {
+    const query = `*[_type == "property" && available == ${true}]`
+
+    const results = await client.fetch(query)
+
+    return results
+}
