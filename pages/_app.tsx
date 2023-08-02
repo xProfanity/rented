@@ -10,9 +10,9 @@ export default function App({ Component, pageProps: {session, ...pageProps} }: A
     <SessionProvider session={session}>
       <StateContext>
         <Navbar />
-        <MobileMenu />
         <Component {...pageProps} />
         <Footer />
+        <MobileMenu />
       </StateContext>
     </SessionProvider>
   )

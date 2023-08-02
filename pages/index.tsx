@@ -1,11 +1,12 @@
-import { heroSlogan } from "@/assets";
+import { HeroSection } from "@/components";
 
 export default function index() {
   return (
-    <div className="flex-1 h-auto flex">
-        <div className="h-screen w-[95%] mx-auto mt-20 flex flex-col md:flex-row">
-            <div className="">{heroSlogan}</div>
-        </div>
+    <div className="flex-1 h-auto flex flex-col ">
+        <HeroSection />
+        <section>
+          <p>Featured</p>
+        </section>
     </div>
   )
 }

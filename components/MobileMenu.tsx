@@ -1,21 +1,30 @@
 import { useStateContext } from "@/context/StateContext"
 import Image from "next/image"
 
+import { motion } from 'framer-motion'
+import { useRouter } from "next/router"
 import { AiOutlineLogin, AiOutlineLogout } from "react-icons/ai"
 import { BsX } from "react-icons/bs"
 
 import { RentedColor, menu } from "@/assets"
 import Link from "next/link"
-import { useRouter } from "next/router"
 
 export default function MobileMenu() {
     const {navOpen, handleNavOpen, handleLogin, handleLogout, user}: any = useStateContext()
     const {asPath} = useRouter()
 
+    const underlay = {
+        opacity: navOpen && [0, .5, .5]
+    }
+
+    const animateDrawer = {
+        x: navOpen && [100, 0, 0]
+    }
+
   return (
     <div className={`fixed z-50 h-screen w-full top-0 ${navOpen ? 'block' : 'hidden'}`}>
-        <div onClick={handleNavOpen} className="h-screen w-full bg-black opacity-50 absolute top-0 left-0"/>
-        <div className="fixed z-50 right-0 shadow-lg shadow-black top-0 h-screen w-[25rem] bg-white flex flex-col">
+        <motion.div animate={underlay} onClick={handleNavOpen} className="h-screen w-full bg-black absolute top-0 left-0"/>
+        <motion.div animate={animateDrawer} className="fixed z-50 right-0 shadow-lg shadow-black top-0 h-screen w-[25rem] bg-white flex flex-col">
             <div className="h-20 w-[90%] flex mx-auto flex-row justify-between items-center">
                 <Image
                     src={RentedColor}
@@ -80,7 +89,7 @@ export default function MobileMenu() {
             <div className="mt-52 w-[90%] mx-auto flex flex-row justify-end items-center">
                 <p className="text-gray-500 text-sm">&copy;copyright 2023</p>
             </div>
-        </div>
+        </motion.div>
     </div>
   )
 }
