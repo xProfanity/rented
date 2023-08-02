@@ -17,3 +17,7 @@ export interface Property {
   available: boolean;
   contact: string[];
 }
+
+export interface Featured {
+  featured: Property[]
+}

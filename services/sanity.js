@@ -15,3 +15,11 @@ export async function grabHouses() {
 
     return results
 }
+
+export async function fetchFeaturedHouses() {
+    const query = `*[_type == "featured"]`
+
+    const results = await client.fetch(query)
+
+    return results[0]?.properties
+}
