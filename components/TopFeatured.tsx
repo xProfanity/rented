@@ -12,10 +12,10 @@ export default function TopFeatured({featured}: Props) {
             <p className="text-6xl text-primary font-semibold">Top Featured</p>
         </div>
 
-        <div className="mt-10 w-full gap-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 justify-center items-center mx-auto">
-            {featured.map((property) => (
+        <div className="mt-10 w-full gap-10 grid grid-cols-1 justify-center items-center mx-auto">
+            {featured.map((property, index) => (
                 <div key={property?.propertyId} className="col-span-1">
-                    <PropertyCard property={property} />
+                    <PropertyCard property={property} reverse={index % 2 !== 0} />
                 </div>
             ))}
         </div>
