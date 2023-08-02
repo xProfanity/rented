@@ -15,11 +15,21 @@ export default function index({featured}: Featured) {
 
 
 export async function getServerSideProps() {
+  try {
     const featured = await fetchFeaturedHouses()
-
+    
     return {
         props: {
             featured
         }
     }
+  } catch (error) {
+    console.log('error', error)
+    return {
+      props: {
+        data: ''
+      }
+    }
+  }
+
 }

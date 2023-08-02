@@ -12,7 +12,7 @@ export interface Property {
   area: number;
   areaUnit: string;
   thumbnail: string;
-  amenities: string[];
+  ameneties: string[];
   images: string[];
   available: boolean;
   contact: string[];

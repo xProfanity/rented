@@ -1,3 +1,5 @@
+import Skeleton from "react-loading-skeleton";
+
 import { Property } from "@/common.types";
 import { PropertyCard } from ".";
 
@@ -13,11 +15,27 @@ export default function TopFeatured({featured}: Props) {
         </div>
 
         <div className="mt-10 w-full gap-10 grid grid-cols-1 justify-center items-center mx-auto">
-            {featured.map((property, index) => (
-                <div key={property?.propertyId} className="col-span-1">
-                    <PropertyCard property={property} reverse={index % 2 !== 0} />
+            {featured ? (
+                featured?.map((property, index) => (
+                    <div key={property?.propertyId} className="col-span-1">
+                        <PropertyCard property={property} reverse={index % 2 !== 0} />
+                    </div>
+                ))
+            ) : (
+                <div className="w-full h-auto gap-5 flex flex-col md:flex-row justify-around items-center col-span-2">
+                    {
+                        [...Array(2)].map((_, i) => (
+                            <div key={i} className="h-auto flex">
+                                <Skeleton
+                                    count={1}
+                                    width={550}
+                                    height={50}
+                                />
+                            </div>
+                        ))
+                    }
                 </div>
-            ))}
+            )}
         </div>
     </div>
   )

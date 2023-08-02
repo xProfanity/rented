@@ -1,6 +1,7 @@
 import { Footer, MobileMenu, Navbar } from '@/components'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import { StateContext } from '@/context/StateContext'
 import { SessionProvider } from 'next-auth/react'
