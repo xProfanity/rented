@@ -22,7 +22,7 @@ export default function TopFeatured({featured}: Props) {
                     </div>
                 ))
             ) : (
-                <div className="w-full h-auto gap-5 flex flex-col md:flex-row justify-around items-center col-span-2">
+                <div className="w-full h-auto gap-10 flex flex-col md:flex-row justify-around items-center col-span-2">
                     {
                         [...Array(2)].map((_, i) => (
                             <div key={i} className="h-auto flex">

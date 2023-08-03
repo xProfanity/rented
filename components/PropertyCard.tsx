@@ -4,6 +4,7 @@ import { FaLocationDot } from "react-icons/fa6";
 
 import { Property } from "@/common.types";
 import { urlFor } from '@/lib/sanity';
+import Link from 'next/link';
 
 type Props = {
     property: Property,
@@ -12,10 +13,10 @@ type Props = {
 
 export default function PropertyCard({property, reverse}: Props) {
 
-  const discountedPrice = Math.round(property.price * .8)
+  const discountedPrice = Math.round(property.price * ((100 - property.discountPercentage) / 100))
 
   return (
-    <div className={`flex-1 h-auto gap-2 flex flex-col ${reverse ? "md:flex-row-reverse" : "md:flex-row"} justify-start items-center`}>
+    <div className={`flex-1 h-auto gap-2 flex flex-col ${reverse ? "xl:flex-row-reverse" : "xl:flex-row"} justify-start items-center`}>
       <Image
         src={urlFor(property.thumbnail).height(400).width(800).url()}
         height={400}
@@ -23,7 +24,7 @@ export default function PropertyCard({property, reverse}: Props) {
         alt='house'
         className="object-contain"
       />
-      <div className='flex-1 h-[400px] w-full flex-col justify-start items-center'>
+      <div className='flex-1 h-[400px] w-full max-w-[800px] flex-col justify-start items-center'>
         <p className='font-bold text-3xl text-primary mx-auto'>{property.title}</p>
 
         <div className='mt-2 flex flex-row justify-start items-center gap-4 w-full'>
@@ -53,18 +54,20 @@ export default function PropertyCard({property, reverse}: Props) {
           </div>
         </div>
 
-        <p className='text-base font-bold '>Get the deal in the first 2 months of your stay. Hurry!</p>
+        <p className='text-base font-bold '>{property.promotionDescription}</p>
         <br />
         <span>👉</span>
-        <button type="button" className='ml-2 p-4 bg-primary rounded-lg text-white font-bold text-sm'>Get Deal</button>
+        <Link href={`/properties/${property.slug.current}`}>
+          <button type="button" className='ml-2 p-4 bg-primary rounded-lg text-white font-bold text-sm'>Get Deal</button>
+        </Link>
 
-        <div className='w-full grid grid-cols-4 gap-1 mt-3'>
+        <div className='w-full grid grid-cols-3 gap-1 mt-3'>
           {property?.ameneties?.map((amenity, index) => (
             <div key={index} className='col-span-1 bg-gray-200 px-1 rounded-md flex-1'>
-              <p className='font-bold text-sm'>{amenity}</p>
+              <p className='font-bold text-sm capitalize w-fit'>{amenity}</p>
             </div>
           ))}
-        </div>
+        L</div>
       </div>
     </div>
   )

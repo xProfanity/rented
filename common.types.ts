@@ -1,6 +1,11 @@
+interface Slug {
+  current: string;
+}
+
 export interface Property {
     propertyId: string;
   title: string;
+  slug: Slug;
   description: string;
   price: number;
   currency: string;
@@ -14,6 +19,9 @@ export interface Property {
   thumbnail: string;
   ameneties: string[];
   images: string[];
+  promotion: boolean;
+  discountPercentage: number;
+  promotionDescription: string;
   available: boolean;
   contact: string[];
 }

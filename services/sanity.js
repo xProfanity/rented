@@ -17,9 +17,9 @@ export async function grabHouses() {
 }
 
 export async function fetchFeaturedHouses() {
-    const query = `*[_type == "featured"]`
+    const query = `*[_type == "property" && promotion == ${true} && available == ${true}]`
 
     const results = await client.fetch(query)
 
-    return results[0]?.properties
+    return results
 }
