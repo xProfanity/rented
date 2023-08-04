@@ -23,3 +23,11 @@ export async function fetchFeaturedHouses() {
 
     return results
 }
+
+export async function fetchPropertyBySlug(slug) {
+    const query = `*[_type == "property" && slug.current == "${slug}"][0]`
+
+    const results = await client.fetch(query)
+
+    return results
+}
