@@ -2,7 +2,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import Skeleton from 'react-loading-skeleton';
 
 import { Property } from "@/common.types";
-import { ImageGallery } from "@/components";
+import { ImageGallery, Rating } from "@/components";
 import { fetchPropertyBySlug, grabHouses } from "@/services/sanity";
 import { BsBookmark } from "react-icons/bs";
 import { FaHashtag, FaPhone } from "react-icons/fa";
@@ -61,6 +61,7 @@ export async function getStaticProps({params: {slug}}: ParamProps) {
 
 
 export default function PropertyDetails({property}: Props) {
+    const handleBookMarks = () => {}
   return (
     <div className="flex flex-1">
         <div className="mt-20 w-full flex flex-col justify-center items-center">
@@ -120,11 +121,14 @@ export default function PropertyDetails({property}: Props) {
                         <div className="w-[95%] mx-auto flex flex-col ">
                             <div className="mx-auto w-full flex flex-row justify-between items-center">
                                 <p>
-                                    <span>{property.currency}</span>
+                                    <span>{property?.currency}</span>
                                     <span>{property?.price}</span>
                                 </p>
                                 <div className="flex flex-row justify-center items-center gap-4">
-                                    <BsBookmark color="#010536" />
+                                    <button type="button" onClick={handleBookMarks}>
+                                        <BsBookmark color="#010536" />
+                                    </button>
+                                    <Rating />
                                 </div>
                             </div>
                         </div>

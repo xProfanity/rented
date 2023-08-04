@@ -4,7 +4,8 @@ import ImageGallery from './ImageGallery'
 import MobileMenu from './MobileMenu'
 import Navbar from './Navbar'
 import PropertyCard from './PropertyCard'
+import Rating from './Rating'
 import TopFeatured from './TopFeatured'
 
-export { Footer, HeroSection, ImageGallery, MobileMenu, Navbar, PropertyCard, TopFeatured }
+export { Footer, HeroSection, ImageGallery, MobileMenu, Navbar, PropertyCard, Rating, TopFeatured }
 
