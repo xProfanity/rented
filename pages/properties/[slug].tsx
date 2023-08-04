@@ -2,8 +2,8 @@ import { FaLocationDot } from "react-icons/fa6";
 import Skeleton from 'react-loading-skeleton';
 
 import { Property } from "@/common.types";
-import { ImageGallery, Rating } from "@/components";
-import { fetchPropertyBySlug, grabHouses } from "@/services/sanity";
+import { ImageGallery, PropertyCard, Rating } from "@/components";
+import { fetchMorePropertiesByType, fetchPropertyBySlug, grabHouses } from "@/services/sanity";
 import { BsBookmark } from "react-icons/bs";
 import { FaHashtag, FaPhone } from "react-icons/fa";
 
@@ -14,7 +14,8 @@ type ParamProps = {
 }
 
 type Props = {
-    property: Property
+    property: Property;
+    properties: Property[];
 }
 
 export async function getStaticPaths() {
@@ -42,11 +43,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({params: {slug}}: ParamProps) {
     try {
-        const property = await fetchPropertyBySlug(slug)
+        const property:Property = await fetchPropertyBySlug(slug)
+        const properties = await fetchMorePropertiesByType(property?.type, property?.propertyId)
 
         return {
             props: {
-                property
+                property,
+                properties
             }
         }
     } catch (error) {
@@ -60,7 +63,7 @@ export async function getStaticProps({params: {slug}}: ParamProps) {
 }
 
 
-export default function PropertyDetails({property}: Props) {
+export default function PropertyDetails({property, properties}: Props) {
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
 
     const handleBookMarks = () => {}
@@ -144,13 +147,13 @@ export default function PropertyDetails({property}: Props) {
                                 <div className="flex justify-between items-center">
                                     <p className="text-gray-500">Discount</p>
                                     <p className="font-bold text-primary">
-                                        {property?.discountPercentage}%
+                                        {property?.promotion ? `${property?.discountPercentage}%` : 'Not Available'}
                                     </p>
                                 </div>
                                 <div className="flex justify-between py-2 px-2 mt-2 bg-teal-500 items-center rounded-md">
                                     <p className="font-bold text-lg text-white">Final Price</p>
                                     <p className="font-bold text-white text-lg">
-                                        {property?.currency} {discountedPrice.toLocaleString()}.00
+                                        {property?.promotion ? `${property?.currency} ${discountedPrice.toLocaleString()}.00` : `${property?.price.toLocaleString()}.00`}
                                     </p>
                                 </div>
 
@@ -175,6 +178,12 @@ export default function PropertyDetails({property}: Props) {
             
             <div className="mt-10 w-[95%]">
                 <h1 className="capitalize font-bold text-3xl text-primary">more {property?.type}s</h1>
+                
+                <div className="w-full flex flex-col md:flex-row gap-2 justify-center md:justify-start items-start md:items-center">
+                    {properties?.map((property) => (
+                        <PropertyCard property={property} key={property?.propertyId}/>
+                    ))}
+                </div>
             </div>
         </div>
     </div>

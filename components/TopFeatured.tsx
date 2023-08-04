@@ -1,7 +1,7 @@
 import Skeleton from "react-loading-skeleton";
 
 import { Property } from "@/common.types";
-import { PropertyCard } from ".";
+import { FeaturedPropertyCard } from ".";
 
 type Props = {
     featured: Property[];
@@ -18,7 +18,7 @@ export default function TopFeatured({featured}: Props) {
             {featured ? (
                 featured?.map((property, index) => (
                     <div key={property?.propertyId} className="col-span-1">
-                        <PropertyCard property={property} reverse={index % 2 !== 0} />
+                        <FeaturedPropertyCard property={property} reverse={index % 2 !== 0} />
                     </div>
                 ))
             ) : (

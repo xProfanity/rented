@@ -1,3 +1,4 @@
+import FeaturedPropertyCard from './FeaturedPropertyCard'
 import Footer from './Footer'
 import HeroSection from './HeroSection'
 import ImageGallery from './ImageGallery'
@@ -7,5 +8,5 @@ import PropertyCard from './PropertyCard'
 import Rating from './Rating'
 import TopFeatured from './TopFeatured'
 
-export { Footer, HeroSection, ImageGallery, MobileMenu, Navbar, PropertyCard, Rating, TopFeatured }
+export { FeaturedPropertyCard, Footer, HeroSection, ImageGallery, MobileMenu, Navbar, PropertyCard, Rating, TopFeatured }
 

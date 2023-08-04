@@ -31,3 +31,11 @@ export async function fetchPropertyBySlug(slug) {
 
     return results
 }
+
+export async function fetchMorePropertiesByType(type, propertyId) {
+    const query = `*[_type == "property" && type == "${type}" && available == ${true} && propertyId != "${propertyId}"]`
+
+    const results = await client.fetch(query)
+
+    return results
+}
