@@ -1,12 +1,12 @@
-import Image from "next/image"
+import Skeleton from 'react-loading-skeleton'
 
 import { Property } from "@/common.types"
-import { urlFor } from "@/lib/sanity"
+import { ImageGallery } from "@/components"
 import { fetchPropertyBySlug, grabHouses } from "@/services/sanity"
 
 type ParamProps = {
     params: {
-        slug: string;
+        slug?: string | null;
     }
 }
 
@@ -15,26 +15,43 @@ type Props = {
 }
 
 export async function getStaticPaths() {
-    const property:Property[] = await grabHouses()
-
-    const paths = property.map((house: Property) => ({
-        params: {
-            slug: house.slug.current
+    try {
+        const property:Property[] = await grabHouses()
+        
+        const paths = property.map((house: Property) => ({
+            params: {
+                slug: house.slug.current
+            }
+        }))
+    
+        return {
+            paths,
+            fallback: false
         }
-    }))
-
-    return {
-        paths,
-        fallback: false
+    } catch (error) {
+        console.log('error', error)
+        return {
+            paths: [],
+            fallback: true
+        }
     }
 }
 
 export async function getStaticProps({params: {slug}}: ParamProps) {
-    const property = await fetchPropertyBySlug(slug)
+    try {
+        const property = await fetchPropertyBySlug(slug)
 
-    return {
-        props: {
-            property
+        return {
+            props: {
+                property
+            }
+        }
+    } catch (error) {
+        console.log('error', error)
+        return {
+            props: {
+                data: ''
+            }
         }
     }
 }
@@ -45,13 +62,11 @@ export default function PropertyDetails({property}: Props) {
     <div className="flex flex-1">
         <div className="mt-20 w-full flex flex-col justify-center items-center">
             <div className="w-full flex flex-col justify-start items-center">
-                <Image
-                    src={urlFor(property.thumbnail).height(400).width(700).url()}
-                    height={400}
-                    width={700}
-                    alt="house"
-                    className="object-contain rounded-xl"
-                />
+                {property ? (
+                    <ImageGallery images={[property?.thumbnail, ...property?.images]} />
+                ) : (
+                    <Skeleton count={1} height={43} width={800} />
+                )}
             </div>
         </div>
     </div>

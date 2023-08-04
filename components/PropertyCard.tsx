@@ -67,7 +67,7 @@ export default function PropertyCard({property, reverse}: Props) {
               <p className='font-bold text-sm capitalize w-fit'>{amenity}</p>
             </div>
           ))}
-        L</div>
+        </div>
       </div>
     </div>
   )

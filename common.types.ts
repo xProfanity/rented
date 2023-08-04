@@ -1,11 +1,19 @@
-interface Slug {
+interface slug {
   current: string;
 }
 
+export interface image {
+  asset: {
+    _ref: string;
+    _type: string;
+  },
+  _type: string;
+}
+
 export interface Property {
-    propertyId: string;
+  propertyId: string;
   title: string;
-  slug: Slug;
+  slug: slug;
   description: string;
   price: number;
   currency: string;
@@ -16,9 +24,9 @@ export interface Property {
   bathrooms: number;
   area: number;
   areaUnit: string;
-  thumbnail: string;
+  thumbnail: image;
   ameneties: string[];
-  images: string[];
+  images: image[];
   promotion: boolean;
   discountPercentage: number;
   promotionDescription: string;
