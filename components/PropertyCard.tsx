@@ -48,9 +48,9 @@ export default function PropertyCard({property, reverse}: Props) {
         </div>
 
         <div className='mt-5 flex flex-row justify-start items-center gap-4'>
-          <p className='text-lg font-bold line-through decoration-red-500'>{property.currency} {property.price}.00</p>
+          <p className='text-lg font-bold line-through decoration-red-500'>{property.currency} {property.price.toLocaleString()}.00</p>
           <div className=''>
-            <p className='text-3xl font-bold text-black'>{property.currency} {discountedPrice}.00</p>
+            <p className='text-3xl font-bold text-black'>{property.currency} {discountedPrice.toLocaleString()}.00</p>
           </div>
         </div>
 

@@ -61,6 +61,8 @@ export async function getStaticProps({params: {slug}}: ParamProps) {
 
 
 export default function PropertyDetails({property}: Props) {
+    const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
+
     const handleBookMarks = () => {}
   return (
     <div className="flex flex-1">
@@ -111,24 +113,59 @@ export default function PropertyDetails({property}: Props) {
                     </div>
                 </div>
 
-                <div className="flex mt-5 flex-col gap-4 md:flex-row justify-start items-center">
-                    <div className="flex-col flex gap-2 max-w-[750px]">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-start max-w-[750px] xl:max-w-full items-center mt-2 gap-2">
+                    {property?.ameneties.map((amenity, index) => (
+                        <p key={`${amenity}-${index}`} className="bg-gray-200 p-1 rounded-md capitalize">{amenity}</p>
+                    ))}
+                </div>
+
+                <div className="flex mt-5 h-auto flex-col gap-4 md:flex-row justify-start items-center">
+                    <div className="flex-col h-full justify-start flex gap-2 max-w-[750px]">
                         <h1 className="text-xl font-bold text-primary">Overview</h1>
                         <p className="text-lg text-gray-500">{property?.description}</p>
                     </div>
-
-                    <div className="bg-gray-300 rounded-lg flex-1 w-full">
-                        <div className="w-[95%] mx-auto flex flex-col ">
-                            <div className="mx-auto w-full flex flex-row justify-between items-center">
-                                <p>
-                                    <span>{property?.currency}</span>
-                                    <span>{property?.price}</span>
-                                </p>
-                                <div className="flex flex-row justify-center items-center gap-4">
+                    
+                    <div className="flex w-full flex-col justify-start h-full">
+                        <div className="bg-gray-300 py-2 rounded-lg w-full">
+                            <div className="w-[95%] mx-auto flex flex-col ">
+                                <div className="mx-auto w-full flex flex-row justify-between items-center">
                                     <button type="button" onClick={handleBookMarks}>
-                                        <BsBookmark color="#010536" />
+                                        <BsBookmark size={30} color="#010536" />
                                     </button>
                                     <Rating />
+                                </div>
+
+                                <div className="flex justify-between mt-10 items-center">
+                                    <p className="text-gray-500">Price</p>
+                                    <p className="font-bold text-primary">
+                                        {property?.currency} {property?.price.toLocaleString()}.00
+                                    </p>
+                                </div>
+                                <div className="flex justify-between items-center">
+                                    <p className="text-gray-500">Discount</p>
+                                    <p className="font-bold text-primary">
+                                        {property?.discountPercentage}%
+                                    </p>
+                                </div>
+                                <div className="flex justify-between py-2 px-2 mt-2 bg-teal-500 items-center rounded-md">
+                                    <p className="font-bold text-lg text-white">Final Price</p>
+                                    <p className="font-bold text-white text-lg">
+                                        {property?.currency} {discountedPrice.toLocaleString()}.00
+                                    </p>
+                                </div>
+
+                                <div className="flex flex-row justify-evenly mt-2 gap-2 items-center">
+                                    <button type="button" className="p-3 rounded-lg flex-1 bg-gray-400 font-bold text-sm">Rent</button>
+                                    <button type="button" className="p-3 rounded-lg bg-primary text-white font-bold text-sm">Arrange a visit</button>
+                                </div>
+
+                                <div className="mt-4">
+                                    {property?.contact.map((contact, index) => (
+                                        <div className="flex justify-between items-center">
+                                            <p className="text-gray-500">Contact {property.contact.length > 1 && `${index+1}`}</p>
+                                            <p className="text-gray-500">{contact}</p>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>

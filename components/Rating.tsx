@@ -6,7 +6,7 @@ export default function Rating() {
         {
             [...Array(5)].map((_, index) => (
                 <button  key={index}>
-                    <AiOutlineStar color="#010536" />
+                    <AiOutlineStar size={20} color="#010536" />
                 </button>
             ))
         }

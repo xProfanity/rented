@@ -18,6 +18,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/MobileMenu.jsx", "components/MobileMenu.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/MobileMenu.jsx", "components/MobileMenu.jsx", "context/StateContext.js"],
   "exclude": ["node_modules"]
 }
