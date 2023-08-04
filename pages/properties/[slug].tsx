@@ -172,7 +172,10 @@ export default function PropertyDetails({property}: Props) {
                     </div>
                 </div>
             </div>
-
+            
+            <div className="mt-10 w-[95%]">
+                <h1 className="capitalize font-bold text-3xl text-primary">more {property?.type}s</h1>
+            </div>
         </div>
     </div>
   )
