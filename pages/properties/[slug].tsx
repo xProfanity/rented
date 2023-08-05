@@ -2,9 +2,8 @@ import { FaLocationDot } from "react-icons/fa6";
 import Skeleton from 'react-loading-skeleton';
 
 import { Property } from "@/common.types";
-import { ImageGallery, PropertyCard, Rating } from "@/components";
+import { BookMark, ImageGallery, PropertyCard, Rating } from "@/components";
 import { fetchMorePropertiesByType, fetchPropertyBySlug, grabHouses } from "@/services/sanity";
-import { BsBookmark } from "react-icons/bs";
 import { FaHashtag, FaPhone } from "react-icons/fa";
 
 type ParamProps = {
@@ -66,7 +65,6 @@ export async function getStaticProps({params: {slug}}: ParamProps) {
 export default function PropertyDetails({property, properties}: Props) {
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
 
-    const handleBookMarks = () => {}
   return (
     <div className="flex flex-1 flex-col">
         <div className="mt-20 w-full flex flex-col justify-center items-center">
@@ -132,9 +130,7 @@ export default function PropertyDetails({property, properties}: Props) {
                         <div className="bg-gray-300 py-2 rounded-lg w-full">
                             <div className="w-[95%] mx-auto flex flex-col ">
                                 <div className="mx-auto w-full flex flex-row justify-between items-center">
-                                    <button type="button" onClick={handleBookMarks}>
-                                        <BsBookmark size={30} color="#010536" />
-                                    </button>
+                                    <BookMark />
                                     <Rating />
                                 </div>
 
@@ -181,7 +177,7 @@ export default function PropertyDetails({property, properties}: Props) {
         <div className="mt-10 full flex w-[95%] mx-auto flex-col">
             <h1 className="capitalize font-bold text-3xl text-primary">more {property?.type}s</h1>
             
-            <div className="w-full flex-wrap">
+            <div className="w-full flex-wrap mt-5">
                 <ul className="flex overflow-auto h-auto gap-5">
                     {properties?.map((property) => (
                         <li key={property.propertyId}>
