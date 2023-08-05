@@ -12,7 +12,7 @@ type Props = {
 export default function PropertyCard({property}: Props) {
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
   return (
-    <div className="h-[auto] w-[350px] bg-gray-300 rounded-lg">
+    <div className="h-[auto] w-[350px] bg-gray-300 rounded-lg pb-5">
         <div className="w-full mx-auto flex flex-col justify-center items-center">
             <Image
                 src={urlFor(property?.thumbnail).height(200).width(350).url()}

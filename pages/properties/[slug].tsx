@@ -154,7 +154,7 @@ export default function PropertyDetails({property, properties}: Props) {
                                 <div className="flex justify-between py-2 px-2 mt-2 bg-teal-500 items-center rounded-md">
                                     <p className="font-bold text-lg text-white">Final Price</p>
                                     <p className="font-bold text-white text-lg">
-                                        {property?.promotion ? `${property?.currency} ${discountedPrice.toLocaleString()}.00` : `${property?.price.toLocaleString()}.00`}
+                                        {property?.promotion ? `${property?.currency} ${discountedPrice.toLocaleString()}.00` : `${property?.currency} ${property?.price.toLocaleString()}.00`}
                                     </p>
                                 </div>
 
