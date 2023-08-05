@@ -68,7 +68,7 @@ export default function PropertyDetails({property, properties}: Props) {
 
     const handleBookMarks = () => {}
   return (
-    <div className="flex flex-1">
+    <div className="flex flex-1 flex-col">
         <div className="mt-20 w-full flex flex-col justify-center items-center">
             <div className="w-full flex mt-5 flex-col justify-start items-center">
                 {property ? (
@@ -176,14 +176,19 @@ export default function PropertyDetails({property, properties}: Props) {
                 </div>
             </div>
             
-            <div className="mt-10 w-[95%]">
-                <h1 className="capitalize font-bold text-3xl text-primary">more {property?.type}s</h1>
-                
-                <div className="w-full flex flex-col md:flex-row gap-2 justify-center md:justify-start items-start md:items-center">
+        </div>
+        
+        <div className="mt-10 full flex w-[95%] mx-auto flex-col">
+            <h1 className="capitalize font-bold text-3xl text-primary">more {property?.type}s</h1>
+            
+            <div className="w-full flex-wrap">
+                <ul className="flex overflow-auto h-auto gap-5">
                     {properties?.map((property) => (
-                        <PropertyCard property={property} key={property?.propertyId}/>
+                        <li key={property.propertyId}>
+                            <PropertyCard property={property} key={property?.propertyId}/>
+                        </li>
                     ))}
-                </div>
+                </ul>
             </div>
         </div>
     </div>
