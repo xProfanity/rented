@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import { useState } from "react"
 
@@ -41,12 +43,16 @@ export default function ImageGallery({images}: Props) {
                 height={500}
                 width={700}
                 alt="selected pic"
+                placeholder="blur"
+                blurDataURL={activeImage()}
                 className="object-contain rounded-xl shadow-lg shadow-primary border-2 border-primary"
-            />
+                />
             <div className="flex md:grid flex-row md:grid-cols-2 gap-10 justify-center items-center">
                 {imageStore.map((image, index) => (
                     <div key={index}>
                         <Image
+                            placeholder="blur"
+                            blurDataURL={urlFor(image).height(200).width(200).url()}
                             src={urlFor(image).height(200).width(200).url()}
                             height={200}
                             width={200}

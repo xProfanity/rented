@@ -65,12 +65,17 @@ export async function getStaticProps({params: {slug}}: ParamProps) {
 export default function PropertyDetails({property, properties}: Props) {
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
 
+    const generateRandomNumber = () => {
+        const number = Math.floor(Math.random() * 10000 * 10000)
+
+        return number
+    }
   return (
     <div className="flex flex-1 flex-col">
         <div className="mt-20 w-full flex flex-col justify-center items-center">
             <div className="w-full flex mt-5 flex-col justify-start items-center">
                 {property ? (
-                    <ImageGallery images={[property?.thumbnail, ...property?.images]} />
+                    <ImageGallery key={generateRandomNumber()} images={[property?.thumbnail, ...property?.images]} />
                 ) : (
                     <Skeleton count={1} height={43} width={800} />
                 )}
