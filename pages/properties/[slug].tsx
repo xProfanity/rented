@@ -165,7 +165,7 @@ export default function PropertyDetails({property, properties}: Props) {
 
                                 <div className="mt-4">
                                     {property?.contact.map((contact, index) => (
-                                        <div className="flex justify-between items-center">
+                                        <div className="flex justify-between items-center" key={index}>
                                             <p className="text-gray-500">Contact {property.contact.length > 1 && `${index+1}`}</p>
                                             <p className="text-gray-500">{contact}</p>
                                         </div>
@@ -184,8 +184,8 @@ export default function PropertyDetails({property, properties}: Props) {
             
             <div className="w-full flex-wrap mt-5">
                 <ul className="flex overflow-auto h-auto gap-5">
-                    {properties?.map((property) => (
-                        <li key={property.propertyId}>
+                    {properties?.map((property, index) => (
+                        <li key={`${property?.propertyId}-${index}`}>
                             <PropertyCard property={property} key={property?.propertyId}/>
                         </li>
                     ))}

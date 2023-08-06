@@ -37,3 +37,11 @@ export interface Property {
 export interface Featured {
   featured: Property[]
 }
+
+export interface User {
+  username: string;
+  userId: string;
+  image: string;
+  email: string;
+  bookmarks: Property[]
+}
