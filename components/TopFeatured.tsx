@@ -1,13 +1,14 @@
 import Skeleton from "react-loading-skeleton";
 
-import { Property } from "@/common.types";
+import { Property, User } from "@/common.types";
 import { FeaturedPropertyCard } from ".";
 
 type Props = {
     featured: Property[];
+    user: User;
 }
 
-export default function TopFeatured({featured}: Props) {
+export default function TopFeatured({featured, user}: Props) {
   return (
     <div className="w-[95%] mx-auto flex flex-col justify-start items-center">
         <div className="w-full flex flex-row justify-center items-center">
@@ -18,7 +19,7 @@ export default function TopFeatured({featured}: Props) {
             {featured ? (
                 featured?.map((property, index) => (
                     <div key={property?.propertyId} className="col-span-1">
-                        <FeaturedPropertyCard property={property} reverse={index % 2 !== 0} />
+                        <FeaturedPropertyCard property={property} reverse={index % 2 !== 0} user={user}/>
                     </div>
                 ))
             ) : (

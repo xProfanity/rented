@@ -1,19 +1,22 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { FaBed, FaChartArea, FaShower } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 
-import { Property } from "@/common.types";
+import { Property, User } from "@/common.types";
+import { useStateContext } from '@/context/StateContext';
 import { urlFor } from '@/lib/sanity';
-import Link from 'next/link';
 
 type Props = {
     property: Property,
     reverse: boolean;
+    user: User;
 }
 
-export default function FeaturedPropertyCard({property, reverse}: Props) {
+export default function FeaturedPropertyCard({property, reverse, user}: Props) {
 
   const discountedPrice = Math.round(property.price * ((100 - property.discountPercentage) / 100))
+  const {handleLogin}: any = useStateContext()
 
   return (
     <div className={`flex-1 h-auto gap-2 flex flex-col ${reverse ? "xl:flex-row-reverse" : "xl:flex-row"} justify-start items-center`}>
@@ -56,10 +59,18 @@ export default function FeaturedPropertyCard({property, reverse}: Props) {
 
         <p className='text-base font-bold '>{property.promotionDescription}</p>
         <br />
-        <span>👉</span>
-        <Link href={`/properties/${property.slug.current}`}>
-          <button type="button" className='ml-2 p-4 bg-primary rounded-lg text-white font-bold text-sm'>Get Deal</button>
-        </Link>
+        {user ? (
+          <>
+            <span>👉</span>
+            <Link href={`/user/${user._id}/property/${property.slug.current}`}>
+              <button type="button" className='ml-2 p-4 bg-primary rounded-lg text-white font-bold text-sm'>Get Deal</button>
+            </Link>
+          </>
+        ) : (
+          <button type="button" onClick={handleLogin} className='p-4 bg-primary text-white font-bold text-sm rounded-full'>
+            Login to Get it
+          </button>
+        )}
 
         <div className='w-full grid grid-cols-3 gap-1 mt-3'>
           {property?.ameneties?.map((amenity, index) => (

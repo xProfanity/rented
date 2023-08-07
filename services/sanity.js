@@ -41,12 +41,17 @@ export async function fetchMorePropertiesByType(type, propertyId) {
 }
 
 export async function fetchUserDetails(id) {
-    console.log('id', id)
-    const query = `*[_type == "users" && userId == "${id}"]`
+    const query = `*[_type == "users" && _id == "${id}"][0]`
 
     const results = await client.fetch(query)
 
-    console.log('results', results)
+    return results
+}
+
+export async function fetchAllUsers() {
+    const query = `*[_type == "users"]`
+
+    const results = await client.fetch(query)
 
     return results
 }

@@ -43,5 +43,6 @@ export interface User {
   userId: string;
   image: string;
   email: string;
-  bookmarks: Property[]
+  bookmarks: Property[];
+  _id: string;
 }

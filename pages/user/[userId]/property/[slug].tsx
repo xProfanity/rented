@@ -1,31 +1,41 @@
 import { FaLocationDot } from "react-icons/fa6";
 import Skeleton from 'react-loading-skeleton';
 
-import { Property } from "@/common.types";
+import { Property, User } from "@/common.types";
 import { BookMark, ImageGallery, PropertyCard, Rating } from "@/components";
-import { fetchMorePropertiesByType, fetchPropertyBySlug, grabHouses } from "@/services/sanity";
+import { fetchAllUsers, fetchMorePropertiesByType, fetchPropertyBySlug, fetchUserDetails, grabHouses } from "@/services/sanity";
 import { FaHashtag, FaPhone } from "react-icons/fa";
 
 type ParamProps = {
     params: {
         slug?: string | null;
+        userId: string;
     }
 }
 
 type Props = {
     property: Property;
     properties: Property[];
+    userProperties: User;
 }
 
 export async function getStaticPaths() {
     try {
         const property:Property[] = await grabHouses()
-        
-        const paths = property.map((house: Property) => ({
-            params: {
-                slug: house.slug.current
-            }
-        }))
+        const users: User[] = await fetchAllUsers()
+        const paths = []
+        const items:any = property.map((house: Property) => {
+            users?.map((user) => ({
+                params: {
+                    slug: house.slug.current,
+                    userId: user._id
+                }
+            }))
+        })
+
+        for(let item of items) {
+            item && paths.push(...item)
+        }
     
         return {
             paths,
@@ -40,15 +50,18 @@ export async function getStaticPaths() {
     }
 }
 
-export async function getStaticProps({params: {slug}}: ParamProps) {
+export async function getStaticProps({params: {slug, userId}}: ParamProps) {
     try {
         const property:Property = await fetchPropertyBySlug(slug)
         const properties = await fetchMorePropertiesByType(property?.type, property?.propertyId)
 
+        const userProperties = await fetchUserDetails(userId)
+
         return {
             props: {
                 property,
-                properties
+                properties,
+                userProperties
             }
         }
     } catch (error) {
@@ -62,7 +75,7 @@ export async function getStaticProps({params: {slug}}: ParamProps) {
 }
 
 
-export default function PropertyDetails({property, properties}: Props) {
+export default function PropertyDetails({property, properties, userProperties}: Props) {
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
 
     const generateRandomNumber = () => {
@@ -70,6 +83,7 @@ export default function PropertyDetails({property, properties}: Props) {
 
         return number
     }
+
   return (
     <div className="flex flex-1 flex-col">
         <div className="mt-20 w-full flex flex-col justify-center items-center">
