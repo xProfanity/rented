@@ -1,8 +1,11 @@
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import { FaLocationDot } from "react-icons/fa6";
 import Skeleton from 'react-loading-skeleton';
 
 import { Property, User } from "@/common.types";
 import { BookMark, ImageGallery, PropertyCard, Rating } from "@/components";
+import { useStateContext } from "@/context/StateContext";
 import { fetchAllUsers, fetchMorePropertiesByType, fetchPropertyBySlug, fetchUserDetails, grabHouses } from "@/services/sanity";
 import { FaHashtag, FaPhone } from "react-icons/fa";
 
@@ -82,6 +85,20 @@ export default function PropertyDetails({property, properties, userProperties}: 
         const number = Math.floor(Math.random() * 10000 * 10000)
 
         return number
+    }
+
+    const {status} = useSession()
+
+    const {user}:any = useStateContext()
+
+    const router = useRouter()
+
+    if(status === "loading") {
+        return <p>Loading</p>
+    }
+
+    if(status === "unauthenticated") {
+        router.push('/')
     }
 
   return (

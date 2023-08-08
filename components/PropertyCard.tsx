@@ -3,13 +3,14 @@ import Link from "next/link"
 import { FaBath, FaBed, FaChartArea } from "react-icons/fa"
 import { FaLocationDot } from "react-icons/fa6"
 
-import { Property } from "@/common.types"
+import { Property, User } from "@/common.types"
 import { urlFor } from "@/lib/sanity"
 
 type Props = {
-    property: Property
+    property: Property;
+    user?: User;
 }
-export default function PropertyCard({property}: Props) {
+export default function PropertyCard({property, user}: Props) {
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
   return (
     <div className="h-[auto] w-[350px] bg-gray-300 rounded-lg pb-5">
@@ -23,7 +24,7 @@ export default function PropertyCard({property}: Props) {
             />
 
             <div className="w-[95%] mt-2 flex flex-col justify-center items-start">
-                <Link href={`/properties/${property?.slug.current}`}>
+                <Link href={`/user/${user?._id}/properties/${property?.slug.current}`}>
                     <p className="text-lg font-bold text-primary hover:underline">{property?.title}</p>
                 </Link>
                 

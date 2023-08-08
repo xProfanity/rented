@@ -6,9 +6,9 @@ import RentedColor from './images/rented-color.png'
 import RentedWhite from './images/rented-white.png'
 import Rented from './images/rented.png'
 
-import { heroSlogan, heroSub, menu } from './constants/index'
+import { filtersByType, heroSlogan, heroSub, menu } from './constants/index'
 
 export {
-    Logo, Rented, RentedColor, RentedWhite, charming, heroSlogan, heroSub, house, menu, model
+    Logo, Rented, RentedColor, RentedWhite, charming, filtersByType, heroSlogan, heroSub, house, menu, model
 }
 

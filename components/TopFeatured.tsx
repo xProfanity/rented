@@ -15,11 +15,11 @@ export default function TopFeatured({featured, user}: Props) {
             <p className="text-6xl text-primary font-semibold">Top Featured</p>
         </div>
 
-        <div className="mt-10 w-full gap-10 grid grid-cols-1 justify-center items-center mx-auto">
+        <div className="mt-10 w-full gap-10 grid grid-cols-1 xl:grid-cols-2 h-auto justify-center items-start mx-auto">
             {featured ? (
                 featured?.map((property, index) => (
                     <div key={property?.propertyId} className="col-span-1">
-                        <FeaturedPropertyCard property={property} reverse={index % 2 !== 0} user={user}/>
+                        <FeaturedPropertyCard property={property} user={user}/>
                     </div>
                 ))
             ) : (

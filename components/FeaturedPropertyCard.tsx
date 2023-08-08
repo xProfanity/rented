@@ -9,23 +9,22 @@ import { urlFor } from '@/lib/sanity';
 
 type Props = {
     property: Property,
-    reverse: boolean;
     user: User;
 }
 
-export default function FeaturedPropertyCard({property, reverse, user}: Props) {
+export default function FeaturedPropertyCard({property, user}: Props) {
 
   const discountedPrice = Math.round(property.price * ((100 - property.discountPercentage) / 100))
   const {handleLogin}: any = useStateContext()
 
   return (
-    <div className={`flex-1 h-auto gap-2 flex flex-col ${reverse ? "xl:flex-row-reverse" : "xl:flex-row"} justify-start items-center`}>
+    <div className={`flex-1 h-auto gap-2 flex flex-col justify-start items-center`}>
       <Image
         src={urlFor(property.thumbnail).height(400).width(800).url()}
         height={400}
         width={800}
         alt='house'
-        className="object-contain"
+        className="object-contain rounded-lg"
       />
       <div className='flex-1 h-[400px] w-full max-w-[800px] flex-col justify-start items-center'>
         <p className='font-bold text-3xl text-primary mx-auto'>{property.title}</p>
