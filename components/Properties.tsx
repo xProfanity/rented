@@ -18,6 +18,7 @@ export default function Properties({properties:data, user}: Props) {
     const [filters, setFilters] = useState(filtersByType)
     const [properties, setProperties] = useState(data)
     const [searchText, setSearchText] = useState("")
+    const [filterTabs, setFilterTabs] = useState(filtersByType)
 
     const handleSearch = (e: any) => {
         setSearchText(e.target.value)
@@ -57,7 +58,7 @@ export default function Properties({properties:data, user}: Props) {
                 const nameResults = data.filter(property => property.title.toLowerCase().includes(searchText))
                 const locationResults = data.filter(property => property.location.toLowerCase().includes(searchText))
                 const newProperties = [...amenitiesResults, ...nameResults, ...locationResults]
-
+                
                 return setProperties(newProperties)
             }
 
@@ -103,10 +104,10 @@ export default function Properties({properties:data, user}: Props) {
             </div>
 
             <div className="mt-28 md:mt-5 w-full flex flex-col justify-center items-start h-auto">
-                <ul className="flex flex-row w-full px-5 md:px-10 justify-start items-start gap-10 overflow-auto">
+                <ul className="flex flex-row w-full px-5 md:px-10 h-full justify-start items-start gap-10 overflow-auto pb-5">
                     {properties?.length > 0 ? (
                         properties.map((property, index) => (
-                            <li key={index}>
+                            <li key={index} className="h-full">
                                 <PropertyCard property={property} user={user} />
                             </li>
                         ))

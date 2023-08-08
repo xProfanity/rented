@@ -217,7 +217,7 @@ export default function PropertyDetails({property, properties, userProperties}: 
                 <ul className="flex overflow-auto h-auto gap-5">
                     {properties?.map((property, index) => (
                         <li key={`${property?.propertyId}-${index}`}>
-                            <PropertyCard property={property} key={property?.propertyId}/>
+                            <PropertyCard property={property} key={property?.propertyId} user={user}/>
                         </li>
                     ))}
                 </ul>
