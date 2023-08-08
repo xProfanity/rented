@@ -9,19 +9,19 @@ export const heroSub = "Your home is waiting for you"
 
 export const filtersByType = [
     {
-        type: "All",
+        type: "all",
         active: true,
     },
     {
-        type: "houses",
+        type: "house",
         active: false,
     },
     {
-        type: "apartments",
+        type: "apartment",
         active: false,
     },
     {
-        type: "villas",
+        type: "villa",
         active: false,
     },
 ]
