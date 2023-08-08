@@ -211,7 +211,7 @@ export default function PropertyDetails({property, properties, userProperties}: 
         </div>
         
         <div className="mt-10 full flex w-[95%] mx-auto flex-col">
-            <h1 className="capitalize font-bold text-3xl text-primary">more {property?.type}s</h1>
+            <h1 className="font-bold text-3xl text-primary">More {property?.type}s</h1>
             
             <div className="w-full flex-wrap mt-5">
                 <ul className="flex overflow-auto h-auto gap-5">

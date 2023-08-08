@@ -17,6 +17,11 @@ interface Filters {
 export default function Properties({properties:data, user}: Props) {
     const [filters, setFilters] = useState(filtersByType)
     const [properties, setProperties] = useState(data)
+    const [searchText, setSearchText] = useState("")
+
+    const handleSearch = (e: any) => {
+        setSearchText(e.target.value)
+    }
 
     const handleToggleFilters = (type: string) => {
         const newFilters = filters.map(filter => {
@@ -45,6 +50,23 @@ export default function Properties({properties:data, user}: Props) {
         getFilterChanges()
     }, [filters])
 
+    useEffect(()=> {
+        const handleSearchFilter = () => {
+            if(searchText.length > 0) {
+                const amenitiesResults = data.filter(property => property.ameneties.includes(searchText))
+                const nameResults = data.filter(property => property.title.toLowerCase().includes(searchText))
+                const locationResults = data.filter(property => property.location.toLowerCase().includes(searchText))
+                const newProperties = [...amenitiesResults, ...nameResults, ...locationResults]
+
+                return setProperties(newProperties)
+            }
+
+            else return setProperties(data)
+        }
+
+        handleSearchFilter()
+    }, [searchText])
+
   return (
     <div className="w-full flex-1 mx-auto">
         <div className="flex flex-col justify-center items-center w-full">
@@ -55,10 +77,12 @@ export default function Properties({properties:data, user}: Props) {
                     </div>
                     <input
                         type="search"
-                        name=""
-                        id=""
+                        name="search"
+                        id="search"
                         placeholder="Search for a property"
-                        className="h-16 w-full rounded-r-3xl bg-gray-300 outline-none after:bg-black flex-1 "
+                        className="h-16 w-full rounded-r-3xl pr-4 bg-gray-300 outline-none after:bg-black flex-1 "
+                        value={searchText}
+                        onChange={handleSearch}
                     />
                 </div>
                 <div className="col-span-2 w-full h-full flex-col flex justify-center items-center">
@@ -80,11 +104,15 @@ export default function Properties({properties:data, user}: Props) {
 
             <div className="mt-28 md:mt-5 w-full flex flex-col justify-center items-start h-auto">
                 <ul className="flex flex-row w-full px-5 md:px-10 justify-start items-start gap-10 overflow-auto">
-                    {properties.map((property, index) => (
-                        <li key={index}>
-                            <PropertyCard property={property} user={user} />
-                        </li>
-                    ))}
+                    {properties?.length > 0 ? (
+                        properties.map((property, index) => (
+                            <li key={index}>
+                                <PropertyCard property={property} user={user} />
+                            </li>
+                        ))
+                    ) : (
+                        <p className="flex flex-row w-full justify-center item-center text-gray-400">No properties found in your search/filter perimeter</p>
+                    )}
                 </ul>
             </div>
         </div>

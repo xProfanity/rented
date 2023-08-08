@@ -24,7 +24,7 @@ export default function PropertyCard({property, user}: Props) {
             />
 
             <div className="w-[95%] mt-2 flex flex-col justify-center items-start">
-                <Link href={`/user/${user?._id}/properties/${property?.slug.current}`}>
+                <Link href={`/user/${user?._id}/property/${property?.slug.current}`}>
                     <p className="text-lg font-bold text-primary hover:underline">{property?.title}</p>
                 </Link>
                 
