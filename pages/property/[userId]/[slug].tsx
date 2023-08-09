@@ -152,12 +152,12 @@ export default function PropertyDetails({property, properties, user}: Props) {
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-start max-w-[750px] xl:max-w-full items-center mt-2 gap-2">
                     {property?.ameneties.map((amenity, index) => (
-                        <p key={`${amenity}-${index}`} className="bg-gray-200 p-1 rounded-md capitalize">{amenity}</p>
+                        <p key={`${amenity}-${index}`} className="bg-gray-200 p-1 rounded-md text-sm font-bold capitalize">{amenity}</p>
                     ))}
                 </div>
 
                 <div className="flex mt-5 h-auto flex-col gap-4 md:flex-row justify-center items-start">
-                    <div className="flex-col h-full justify-start flex gap-2 max-w-[750px] md:w-[600px] lg:w-[750px]">
+                    <div className="flex-col h-full justify-start flex gap-2 ">
                         <h1 className="text-xl font-bold text-primary">Overview</h1>
                         <p className="text-lg text-gray-500 md:text-justify">{property?.description}</p>
                     </div>

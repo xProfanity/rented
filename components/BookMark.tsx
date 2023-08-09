@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react";
 import { BsBookmark, BsBookmarkCheckFill } from "react-icons/bs";
 
 
@@ -10,16 +11,20 @@ interface Props {
 }
 
 export default function BookMark({bookmarked, propertyId, userId}: Props) {
+
+    const [isBookmarked, setIsBookmarked] = useState(bookmarked)
+
     const handleBookMarks = async () => {
       try {
-        fetch("/api/sanity/route", {method: 'POST', body: JSON.stringify({userId, propertyId, bookmarked})})
+        fetch("/api/sanity/route", {method: 'POST', body: JSON.stringify({userId, propertyId, isBookmarked})})
+        setIsBookmarked(current => !current)
       } catch (error) {
         console.log('error', error)
       }
     }
   return (
     <button type="button" onClick={handleBookMarks}>
-      {bookmarked ? (
+      {isBookmarked ? (
         <BsBookmarkCheckFill size={30} color="#010536" />
       ): (
           <BsBookmark size={30} color="#010536" />
