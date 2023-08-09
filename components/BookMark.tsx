@@ -1,10 +1,29 @@
-import { BsBookmark } from "react-icons/bs";
+"use client"
 
-export default function BookMark() {
-    const handleBookMarks = () => {}
+import { BsBookmark, BsBookmarkCheckFill } from "react-icons/bs";
+
+
+interface Props {
+  bookmarked: boolean;
+  propertyId: string;
+  userId: string;
+}
+
+export default function BookMark({bookmarked, propertyId, userId}: Props) {
+    const handleBookMarks = async () => {
+      try {
+        fetch("/api/sanity/route", {method: 'POST', body: JSON.stringify({userId, propertyId, bookmarked})})
+      } catch (error) {
+        console.log('error', error)
+      }
+    }
   return (
     <button type="button" onClick={handleBookMarks}>
-        <BsBookmark size={30} color="#010536" />
+      {bookmarked ? (
+        <BsBookmarkCheckFill size={30} color="#010536" />
+      ): (
+          <BsBookmark size={30} color="#010536" />
+      )}
     </button>
   )
 }

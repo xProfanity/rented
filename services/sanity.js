@@ -55,3 +55,13 @@ export async function fetchAllUsers() {
 
     return results
 }
+
+export async function addBookmark(userId, propertyId, alreadyBookmarked) {
+    if(!alreadyBookmarked) {
+        await client.patch(userId).setIfMissing({
+            bookmarks: []
+        }).insert("after", "bookmarks[-1]", [propertyId]).commit()
+    } else {
+        await client.patch(userId).splice('bookmarks', 0, 1, [propertyId])
+    }
+}

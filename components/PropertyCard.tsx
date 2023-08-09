@@ -13,8 +13,6 @@ type Props = {
     user?: User;
 }
 export default function PropertyCard({property, user}: Props) {
-    console.log('user', user)
-
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
 
     const {handleLogin}:any = useStateContext()

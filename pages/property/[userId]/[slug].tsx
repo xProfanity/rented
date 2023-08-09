@@ -1,3 +1,5 @@
+"use client"
+
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { FaLocationDot } from "react-icons/fa6";
@@ -109,7 +111,8 @@ export default function PropertyDetails({property, properties, user}: Props) {
                 )}
             </div>
 
-            <div className='mt-10 w-[95%] mx-auto flex flex-col'>
+            {property ? (
+                <div className='mt-10 w-[95%] mx-auto flex flex-col'>
                 <p className='text-2xl sm:text-3xl font-bold text-primary'>{property?.title}</p>
                 
                 <div className="flex flex-col sm:flex-row justify-start items-start gap-1 sm:gap-4">
@@ -163,7 +166,7 @@ export default function PropertyDetails({property, properties, user}: Props) {
                         <div className="bg-gray-300 py-2 rounded-lg w-full">
                             <div className="w-[95%] mx-auto flex flex-col ">
                                 <div className="mx-auto w-full flex flex-row justify-between items-center">
-                                    <BookMark />
+                                    <BookMark bookmarked={user?.bookmarks.includes(property?.propertyId)} propertyId={property?.propertyId} userId={user?._id} />
                                     <Rating />
                                 </div>
 
@@ -204,6 +207,11 @@ export default function PropertyDetails({property, properties, user}: Props) {
                     </div>
                 </div>
             </div>
+            ) : (
+                <div className="mt-10 flex flex-row justify-center items-center gap-10">
+                    <Skeleton height={43} width={800} count={2} />
+                </div>
+            )}
             
         </div>
         
