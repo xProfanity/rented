@@ -18,7 +18,7 @@ export default function TopFeatured({featured, user}: Props) {
         <div className="mt-10 w-full gap-10 grid grid-cols-1 xl:grid-cols-2 h-auto justify-center items-start mx-auto">
             {featured ? (
                 featured?.map((property, index) => (
-                    <div key={property?.propertyId} className="col-span-1">
+                    <div key={index} className="col-span-1">
                         <FeaturedPropertyCard property={property} user={user}/>
                     </div>
                 ))

@@ -13,6 +13,8 @@ type Props = {
     user?: User;
 }
 export default function PropertyCard({property, user}: Props) {
+    console.log('user', user)
+
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
 
     const {handleLogin}:any = useStateContext()
@@ -60,7 +62,7 @@ export default function PropertyCard({property, user}: Props) {
 
                 <div className="w-full h-auto flex flex-row justify-center items-center mt-5">
                     {user ? (
-                        <Link href={`/user/${user?._id}/property/${property?.slug.current}`} className="w-full">
+                        <Link href={`/property/${user?._id}/${property?.slug.current}`} className="w-full">
                             <button type="button" className="w-full h-12 inline-flex gap-2 justify-center items-center bg-primary text-sm font-bold text-white rounded-2xl">
                                 <span>Visit Property</span>
                                 <span><FaLink /></span>

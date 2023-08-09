@@ -5,7 +5,6 @@ import Skeleton from 'react-loading-skeleton';
 
 import { Property, User } from "@/common.types";
 import { BookMark, ImageGallery, PropertyCard, Rating } from "@/components";
-import { useStateContext } from "@/context/StateContext";
 import { fetchAllUsers, fetchMorePropertiesByType, fetchPropertyBySlug, fetchUserDetails, grabHouses } from "@/services/sanity";
 import { FaHashtag, FaPhone } from "react-icons/fa";
 
@@ -19,7 +18,7 @@ type ParamProps = {
 type Props = {
     property: Property;
     properties: Property[];
-    userProperties: User;
+    user: User;
 }
 
 export async function getStaticPaths() {
@@ -58,13 +57,13 @@ export async function getStaticProps({params: {slug, userId}}: ParamProps) {
         const property:Property = await fetchPropertyBySlug(slug)
         const properties = await fetchMorePropertiesByType(property?.type, property?.propertyId)
 
-        const userProperties = await fetchUserDetails(userId)
+        const user = await fetchUserDetails(userId)
 
         return {
             props: {
                 property,
                 properties,
-                userProperties
+                user
             }
         }
     } catch (error) {
@@ -78,7 +77,7 @@ export async function getStaticProps({params: {slug, userId}}: ParamProps) {
 }
 
 
-export default function PropertyDetails({property, properties, userProperties}: Props) {
+export default function PropertyDetails({property, properties, user}: Props) {
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
 
     const generateRandomNumber = () => {
@@ -88,8 +87,6 @@ export default function PropertyDetails({property, properties, userProperties}: 
     }
 
     const {status} = useSession()
-
-    const {user}:any = useStateContext()
 
     const router = useRouter()
 
@@ -156,10 +153,10 @@ export default function PropertyDetails({property, properties, userProperties}: 
                     ))}
                 </div>
 
-                <div className="flex mt-5 h-auto flex-col gap-4 md:flex-row justify-start items-center">
-                    <div className="flex-col h-full justify-start flex gap-2 max-w-[750px]">
+                <div className="flex mt-5 h-auto flex-col gap-4 md:flex-row justify-center items-start">
+                    <div className="flex-col h-full justify-start flex gap-2 max-w-[750px] md:w-[600px] lg:w-[750px]">
                         <h1 className="text-xl font-bold text-primary">Overview</h1>
-                        <p className="text-lg text-gray-500">{property?.description}</p>
+                        <p className="text-lg text-gray-500 md:text-justify">{property?.description}</p>
                     </div>
                     
                     <div className="flex w-full flex-col justify-start h-full">

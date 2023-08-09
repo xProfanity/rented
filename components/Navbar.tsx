@@ -29,7 +29,7 @@ export default function Navbar() {
                 />
             </Link>
             <div className="h-[80%] flex-wrap bg-gray-200 rounded-full hidden md:block">
-                <ul className="w-[35rem] flex flex-row justify-center items-center h-full gap-20">
+                <ul className="w-[28rem] lg:w-[35rem] flex flex-row justify-center items-center h-full gap-20">
                     {menu.map((item, index) => (
                         <li key={index}>
                             <Link href={`#${item.toLowerCase()}`}>
@@ -42,7 +42,7 @@ export default function Navbar() {
                 </ul>
             </div>
             <div className="hidden md:block">
-                {status === 'authenticated' ? (
+                {status === 'authenticated' && user ? (
                         <div className="flex flex-row justify-center items-center gap-3">
                             <Image
                                 src={user?.image}
