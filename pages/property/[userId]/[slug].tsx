@@ -156,8 +156,8 @@ export default function PropertyDetails({property, properties, user}: Props) {
                     ))}
                 </div>
 
-                <div className="flex mt-5 h-auto flex-col gap-4 md:flex-row justify-center items-start">
-                    <div className="flex-col h-full justify-start flex gap-2 ">
+                <div className="flex mt-5 h-auto flex-col gap-4 md:flex-row justify-between items-start">
+                    <div className="flex-col h-full justify-start flex gap-2 w-full">
                         <h1 className="text-xl font-bold text-primary">Overview</h1>
                         <p className="text-lg text-gray-500 md:text-justify">{property?.description}</p>
                     </div>
