@@ -8,6 +8,7 @@ import Skeleton from 'react-loading-skeleton';
 import { Property, User } from "@/common.types";
 import { BookMark, ImageGallery, PropertyCard, Rating } from "@/components";
 import { fetchAllUsers, fetchMorePropertiesByType, fetchPropertyBySlug, fetchUserDetails, grabHouses } from "@/services/sanity";
+import { BsFillStarFill } from "react-icons/bs";
 import { FaHashtag, FaPhone } from "react-icons/fa";
 
 type ParamProps = {
@@ -82,6 +83,8 @@ export async function getStaticProps({params: {slug, userId}}: ParamProps) {
 export default function PropertyDetails({property, properties, user}: Props) {
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
 
+    console.log('property.reviews', property?.reviews)
+
     const generateRandomNumber = () => {
         const number = Math.floor(Math.random() * 10000 * 10000)
 
@@ -113,7 +116,10 @@ export default function PropertyDetails({property, properties, user}: Props) {
 
             {property ? (
                 <div className='mt-10 w-[95%] mx-auto flex flex-col'>
-                <p className='text-2xl sm:text-3xl font-bold text-primary'>{property?.title}</p>
+                <p className='text-2xl sm:text-3xl font-bold text-primary'>{property?.title} <span className="inline-flex justify-center items-center gap-2">
+                    (4.3 <BsFillStarFill />)
+                    </span>
+                </p>
                 
                 <div className="flex flex-col sm:flex-row justify-start items-start gap-1 sm:gap-4">
                     <div className="inline-flex mt-2 justify-center items-center gap-2">
@@ -167,7 +173,10 @@ export default function PropertyDetails({property, properties, user}: Props) {
                             <div className="w-[95%] mx-auto flex flex-col ">
                                 <div className="mx-auto w-full flex flex-row justify-between items-center">
                                     <BookMark bookmarked={user?.bookmarks.includes(property?.propertyId)} propertyId={property?.propertyId} userId={user?._id} />
-                                    <Rating user={user} propertyId={property.propertyId}/>
+                                    <div className="flex flex-row justify-center-items-center gap-3">
+                                        <p className="font-bold text-lg text-primary">4.3</p>
+                                        <Rating user={user} propertyId={property.propertyId}/>
+                                    </div>
                                 </div>
 
                                 <div className="flex justify-between mt-10 items-center">

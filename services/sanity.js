@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid'
 import { client } from "../lib/sanity"
 
 export async function findUserByEmail(email) {
@@ -63,5 +64,47 @@ export async function addBookmark(userId, propertyId, alreadyBookmarked) {
         }).insert("after", "bookmarks[-1]", [propertyId]).commit()
     } else {
         await client.patch(userId).splice('bookmarks', 0, 1, [propertyId])
+    }
+}
+
+export async function alreadyReviewedProperty(propertyId) {
+    const query = `*[_type == "reviews" && reviewedPropertyId == "${propertyId}"]`
+
+    const results = await client.fetch(query)
+
+    return {alreadyReviewed: !!results.length, review: results[0]}
+}
+
+async function fetchPropertyByPropertyId(propertyId) {
+    const query = `*[_type == "property" && propertyId == "${propertyId}"]`
+
+    const results = await client.fetch(query)
+
+    return results[0]
+}
+
+export async function createReview(doc) {
+    const {alreadyReviewed, review} = await alreadyReviewedProperty(doc.reviewedPropertyId)
+
+    console.log('alreadyReviewd, review', alreadyReviewed, review)
+
+    if(alreadyReviewed) {
+        return await client.patch(review._id).set(doc).commit()
+    } else {
+        const result = await client.create(doc)
+
+        const property = await fetchPropertyByPropertyId(doc.reviewedPropertyId)
+
+        await client.patch(property?._id).setIfMissing({
+            reviews: []
+        }).insert('after', 'reviews[-1]', [
+            {
+                _ref: result._id,
+                _type: 'reviewRef',
+                _key: uuidv4()
+            }
+        ]).commit()
+
+        return result
     }
 }
