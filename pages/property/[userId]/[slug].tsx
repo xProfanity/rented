@@ -167,7 +167,7 @@ export default function PropertyDetails({property, properties, user}: Props) {
                             <div className="w-[95%] mx-auto flex flex-col ">
                                 <div className="mx-auto w-full flex flex-row justify-between items-center">
                                     <BookMark bookmarked={user?.bookmarks.includes(property?.propertyId)} propertyId={property?.propertyId} userId={user?._id} />
-                                    <Rating />
+                                    <Rating user={user} propertyId={property.propertyId}/>
                                 </div>
 
                                 <div className="flex justify-between mt-10 items-center">

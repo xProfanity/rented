@@ -16,7 +16,7 @@ export default function BookMark({bookmarked, propertyId, userId}: Props) {
 
     const handleBookMarks = async () => {
       try {
-        fetch("/api/sanity/route", {method: 'POST', body: JSON.stringify({userId, propertyId, isBookmarked})})
+        fetch("/api/sanity/bookmarks", {method: 'POST', body: JSON.stringify({userId, propertyId, isBookmarked})})
         setIsBookmarked(current => !current)
       } catch (error) {
         console.log('error', error)

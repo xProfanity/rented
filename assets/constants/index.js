@@ -25,3 +25,26 @@ export const filtersByType = [
         active: false,
     },
 ]
+
+export const ratingStars = [
+    {
+        index: 1,
+        isActive: false
+    },
+    {
+        index: 2,
+        isActive: false
+    },
+    {
+        index: 3,
+        isActive: false
+    },
+    {
+        index: 4,
+        isActive: false
+    },
+    {
+        index: 5,
+        isActive: false
+    },
+]
