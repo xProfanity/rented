@@ -46,3 +46,12 @@ export interface User {
   bookmarks: string[];
   _id: string;
 }
+
+export interface Rating{
+  review: string;
+  rate: number;
+  reviewBy: {
+    _type: string;
+    _ref: string;
+  }
+}

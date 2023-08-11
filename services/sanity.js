@@ -101,10 +101,18 @@ export async function createReview(doc) {
             {
                 _ref: result._id,
                 _type: 'reviewRef',
-                _key: uuidv4()
+                _key: uuidv4(),
             }
         ]).commit()
 
         return result
     }
+}
+
+export async function fetchPropertyReviews(propertyId) {
+    const query = `*[_type == 'reviews' && reviewedPropertyId == "${propertyId}"]`
+
+    const results = await client.fetch(query)
+
+    return results
 }

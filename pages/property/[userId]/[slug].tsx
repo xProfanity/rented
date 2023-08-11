@@ -8,6 +8,7 @@ import Skeleton from 'react-loading-skeleton';
 import { Property, User } from "@/common.types";
 import { BookMark, ImageGallery, PropertyCard, Rating } from "@/components";
 import { fetchAllUsers, fetchMorePropertiesByType, fetchPropertyBySlug, fetchUserDetails, grabHouses } from "@/services/sanity";
+import { useEffect, useState } from "react";
 import { BsFillStarFill } from "react-icons/bs";
 import { FaHashtag, FaPhone } from "react-icons/fa";
 
@@ -82,8 +83,7 @@ export async function getStaticProps({params: {slug, userId}}: ParamProps) {
 
 export default function PropertyDetails({property, properties, user}: Props) {
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
-
-    console.log('property.reviews', property?.reviews)
+    const [rate, setRate] = useState(0)
 
     const generateRandomNumber = () => {
         const number = Math.floor(Math.random() * 10000 * 10000)
@@ -94,6 +94,19 @@ export default function PropertyDetails({property, properties, user}: Props) {
     const {status} = useSession()
 
     const router = useRouter()
+
+    useEffect(() => {
+        const getPropertyReviews = async () => {
+            try {
+                const response = await fetch(`/api/sanity/reviews/${property?.propertyId}`, {method: 'GET'})
+                
+            } catch (error) {
+                console.log('error', error)
+            }
+        }
+
+        getPropertyReviews()
+    }, [property?.propertyId])
 
     if(status === "loading") {
         return <p>Loading</p>
