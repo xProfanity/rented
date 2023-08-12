@@ -238,17 +238,25 @@ export default function PropertyDetails({property, properties, user}: Props) {
         </div>
         
         <div className="mt-10 full flex w-[95%] mx-auto flex-col">
-            <h1 className="font-bold text-3xl text-primary">More {property?.type}s</h1>
-            
-            <div className="w-full flex-wrap mt-5">
-                <ul className="flex overflow-auto h-auto gap-5">
-                    {properties?.map((property, index) => (
-                        <li key={`${property?.propertyId}-${index}`}>
-                            <PropertyCard property={property} key={property?.propertyId} user={user}/>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            {property ? (
+                <>
+                    <h1 className="font-bold text-3xl text-primary">More {property?.type}s</h1>
+                
+                    <div className="w-full flex-wrap mt-5">
+                        <ul className="flex overflow-auto h-auto gap-5">
+                            {properties?.map((property, index) => (
+                                <li key={`${property?.propertyId}-${index}`}>
+                                    <PropertyCard property={property} key={property?.propertyId} user={user}/>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </>
+            ) : (
+                <div className="flex flex-row justify-center items-center gap-10">
+                    <Skeleton height={43} width={800} count={1} />
+                </div>
+            )}
         </div>
     </div>
   )
