@@ -9,6 +9,7 @@ import Properties from './Properties'
 import PropertyCard from './PropertyCard'
 import Rating from './Rating'
 import TopFeatured from './TopFeatured'
+import WhyUs from './WhyUs'
 
-export { BookMark, FeaturedPropertyCard, Footer, HeroSection, ImageGallery, MobileMenu, Navbar, Properties, PropertyCard, Rating, TopFeatured }
+export { BookMark, FeaturedPropertyCard, Footer, HeroSection, ImageGallery, MobileMenu, Navbar, Properties, PropertyCard, Rating, TopFeatured, WhyUs }
 

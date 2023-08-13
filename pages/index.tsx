@@ -1,6 +1,6 @@
 
 import { Property, User } from "@/common.types";
-import { HeroSection, Properties, TopFeatured } from "@/components";
+import { HeroSection, Properties, TopFeatured, WhyUs } from "@/components";
 import { useStateContext } from '@/context/StateContext';
 import { fetchAllUsers, fetchFeaturedHouses, grabHouses } from "@/services/sanity";
 
@@ -24,6 +24,10 @@ export default function index({featured, users, properties}: Props) {
         
         <section className="mt-20 h-auto min-h-screen w-full">
           <TopFeatured featured={featured} user={loggedInUser} />
+        </section>
+
+        <section>
+          <WhyUs />
         </section>
 
     </div>
