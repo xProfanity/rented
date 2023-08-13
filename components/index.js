@@ -8,8 +8,9 @@ import Navbar from './Navbar'
 import Properties from './Properties'
 import PropertyCard from './PropertyCard'
 import Rating from './Rating'
+import Testimonials from './Testimonials'
 import TopFeatured from './TopFeatured'
 import WhyUs from './WhyUs'
 
-export { BookMark, FeaturedPropertyCard, Footer, HeroSection, ImageGallery, MobileMenu, Navbar, Properties, PropertyCard, Rating, TopFeatured, WhyUs }
+export { BookMark, FeaturedPropertyCard, Footer, HeroSection, ImageGallery, MobileMenu, Navbar, Properties, PropertyCard, Rating, Testimonials, TopFeatured, WhyUs }
 

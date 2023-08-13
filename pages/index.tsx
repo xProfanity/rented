@@ -1,6 +1,6 @@
 
 import { Property, User } from "@/common.types";
-import { HeroSection, Properties, TopFeatured, WhyUs } from "@/components";
+import { HeroSection, Properties, Testimonials, TopFeatured, WhyUs } from "@/components";
 import { useStateContext } from '@/context/StateContext';
 import { fetchAllUsers, fetchFeaturedHouses, grabHouses } from "@/services/sanity";
 
@@ -28,6 +28,10 @@ export default function index({featured, users, properties}: Props) {
 
         <section>
           <WhyUs />
+        </section>
+
+        <section>
+          <Testimonials />
         </section>
 
     </div>
