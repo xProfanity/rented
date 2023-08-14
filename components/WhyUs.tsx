@@ -6,4 +6,4 @@ const WhyUs = () => {
   )
 }
 
-export default Appwrap(WhyUs, 'Why Us')
+export default Appwrap(WhyUs, 'why us')

@@ -1,6 +1,9 @@
+import Appwrap from '@/HOC/Appwrap'
 
-export default function Testimonials() {
+const Testimonials = () => {
   return (
     <div>Testimonials</div>
   )
 }
+
+export default Appwrap(Testimonials, 'testimonials')
