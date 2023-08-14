@@ -1,3 +1,4 @@
+"use client"
 
 import { Property, User } from "@/common.types";
 import { HeroSection, Properties, Testimonials, TopFeatured, WhyUs } from "@/components";
@@ -26,11 +27,11 @@ export default function index({featured, users, properties}: Props) {
           <TopFeatured featured={featured} user={loggedInUser} />
         </section>
 
-        <section>
+        <section className="mt-20 h-auto min-h-screen w-full">
           <WhyUs />
         </section>
 
-        <section>
+        <section className="mt-20 h-auto min-h-screen w-full">
           <Testimonials />
         </section>
 

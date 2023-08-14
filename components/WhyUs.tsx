@@ -1,6 +1,9 @@
+import Appwrap from "@/HOC/Appwrap"
 
-export default function WhyUs() {
+const WhyUs = () => {
   return (
     <div>WhyUs</div>
   )
 }
+
+export default Appwrap(WhyUs, 'Why Us')
