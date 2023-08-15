@@ -2,8 +2,8 @@ import Appwrap from '@/HOC/Appwrap'
 
 const Testimonials = () => {
   return (
-    <div>Testimonials</div>
+    <div>content</div>
   )
 }
 
-export default Appwrap(Testimonials, 'testimonials')
+export default Appwrap(Testimonials, 'testimonials', 'What others say about us')
