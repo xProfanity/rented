@@ -2,7 +2,9 @@ import Appwrap from "@/HOC/Appwrap"
 
 const WhyUs = () => {
   return (
-    <div>WhyUs</div>
+    <div className="text-lg text-gray-500">
+      Why would you consider Renting from us?
+    </div>
   )
 }
 
