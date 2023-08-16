@@ -97,7 +97,7 @@ export default function PropertyDetails({property, properties, user}: Props) {
     useEffect(() => {
         const getPropertyReviews = async () => {
             try {
-                const response = await fetch(`/api/sanity/reviews/${property?.propertyId}`, {method: 'GET'})
+                await fetch(`/api/sanity/reviews/${property?.propertyId}`, {method: 'GET'})
                 
             } catch (error) {
                 console.log('error', error)
