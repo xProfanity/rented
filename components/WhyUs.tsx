@@ -3,7 +3,7 @@ import Appwrap from "@/HOC/Appwrap"
 const WhyUs = () => {
   return (
     <div>
-      content
+      content tuff goes here
     </div>
   )
 }

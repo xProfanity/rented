@@ -2,7 +2,7 @@ import Appwrap from '@/HOC/Appwrap'
 
 const Testimonials = () => {
   return (
-    <div>content</div>
+    <div>content render testimonials</div>
   )
 }
 
