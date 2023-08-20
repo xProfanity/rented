@@ -55,3 +55,8 @@ export interface Rating{
     _ref: string;
   }
 }
+
+export interface WhyUs {
+  name: string;
+  description: string;
+}
