@@ -5,8 +5,8 @@ const Appwrap = (Component, header, subtitle) => function HOC() {
             <p className="text-6xl text-primary font-semibold capitalize">{header}</p>
         </div>
 
-        <div className={`mt-10`}>
-          <div className="text-lg text-gray-500">{subtitle}</div>
+        <div className={`mt-10 w-full`}>
+          <div className="text-lg text-gray-500 text-center w-full">{subtitle}</div>
           <Component />
         </div>
     </div>
