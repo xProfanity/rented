@@ -7,7 +7,10 @@ const WhyUs = () => {
   return (
     <div className="w-full">
       {whyUs.map((content, index) => (
-        <p key={index}>{content.name}</p>
+        <div key={index}>
+          <h1>{content.name}</h1>
+          <p>{content.description}</p>
+        </div>
       ))}
     </div>
   )
