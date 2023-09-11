@@ -1,5 +1,3 @@
-"use client"
-
 import { Property, User } from "@/common.types";
 import { HeroSection, Properties, Testimonials, TopFeatured, WhyUs } from "@/components";
 import { useStateContext } from '@/context/StateContext';

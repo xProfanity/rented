@@ -1,5 +1,3 @@
-"use client"
-
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { FaLocationDot } from "react-icons/fa6";

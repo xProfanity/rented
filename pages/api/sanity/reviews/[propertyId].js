@@ -5,7 +5,6 @@ const handler = async (req, res) => {
 
     try {
         const response = await fetchPropertyReviews(propertyId)
-        console.log('response', response)
 
         return res.status(200).json(response)
     } catch (error) {
