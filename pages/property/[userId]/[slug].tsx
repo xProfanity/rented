@@ -5,7 +5,6 @@ import Skeleton from 'react-loading-skeleton';
 
 import { Property, User } from "@/common.types";
 import { BookMark, ImageGallery, PropertyCard, Rating } from "@/components";
-import { useStateContext } from "@/context/StateContext";
 import { fetchAllUsers, fetchMorePropertiesByType, fetchPropertyBySlug, fetchUserDetails, grabHouses } from "@/services/sanity";
 import { useEffect } from "react";
 import { BsFillStarFill } from "react-icons/bs";
@@ -33,7 +32,7 @@ export async function getStaticPaths() {
             users?.map((user) => ({
                 params: {
                     slug: house.slug.current,
-                    userId: user._id
+                    userid: user._id
                 }
             }))
         })
@@ -82,11 +81,6 @@ export async function getStaticProps({params: {slug, userid}}: ParamProps) {
 
 
 export default function PropertyDetails({property, properties, user}: Props) {
-
-    const {user: authUser}: any = useStateContext()
-
-    console.log('property, properties', property, properties)
-    
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
 
     const generateRandomNumber = () => {
@@ -250,7 +244,7 @@ export default function PropertyDetails({property, properties, user}: Props) {
                         <ul className="flex overflow-auto h-auto gap-5">
                             {properties?.map((property, index) => (
                                 <li key={`${property?.propertyId}-${index}`}>
-                                    <PropertyCard property={property} key={property?.propertyId} user={authUser}/>
+                                    <PropertyCard property={property} key={property?.propertyId} user={user} />
                                 </li>
                             ))}
                         </ul>
