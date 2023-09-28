@@ -55,6 +55,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params: {slug, userid}}: ParamProps) {
+    console.log('userid', userid)
     try {
         const property:Property = await fetchPropertyBySlug(slug)
         const properties = await fetchMorePropertiesByType(property?.type, property?.propertyId)
