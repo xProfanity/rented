@@ -84,6 +84,8 @@ export async function getStaticProps({params: {slug, userid}}: ParamProps) {
 export default function PropertyDetails({property, properties, user}: Props) {
 
     const {user: authUser}: any = useStateContext()
+
+    console.log('property, properties', property, properties)
     
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
 
