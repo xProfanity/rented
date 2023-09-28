@@ -21,6 +21,7 @@ type Props = {
     property: Property;
     properties: Property[];
     user: User;
+    userid: string;
 }
 
 export async function getStaticPaths() {
@@ -65,7 +66,7 @@ export async function getStaticProps({params: {slug, userid}}: ParamProps) {
             props: {
                 property,
                 properties,
-                user, 
+                user,
                 userid
             },
             revalidate: 10
