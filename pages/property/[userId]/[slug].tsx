@@ -13,7 +13,7 @@ import { FaHashtag, FaPhone } from "react-icons/fa";
 type ParamProps = {
     params: {
         slug?: string | null;
-        userId: string;
+        userid: string;
     }
 }
 
@@ -48,18 +48,18 @@ export async function getStaticPaths() {
     } catch (error) {
         console.log('error', error)
         return {
-            paths: [],
+            paths: [],  
             fallback: true
         }
     }
 }
 
-export async function getStaticProps({params: {slug, userId}}: ParamProps) {
+export async function getStaticProps({params: {slug, userid}}: ParamProps) {
     try {
         const property:Property = await fetchPropertyBySlug(slug)
         const properties = await fetchMorePropertiesByType(property?.type, property?.propertyId)
 
-        const user = await fetchUserDetails(userId)
+        const user = await fetchUserDetails(userid)
 
         return {
             props: {

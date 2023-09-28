@@ -9,7 +9,7 @@ interface Props {
   properties: Property[];
 }
 
-export default function index({featured, users, properties}: Props) {
+export default function Home({featured, users, properties}: Props) {
   const {user}: any = useStateContext()
   const loggedInUser = users?.filter((dbUser) => dbUser.email === user?.email)[0]
 
