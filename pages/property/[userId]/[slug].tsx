@@ -81,6 +81,9 @@ export async function getStaticProps({params: {slug, userid}}: ParamProps) {
 
 
 export default function PropertyDetails({property, properties, user}: Props) {
+
+    console.log('user', user)
+
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
 
     const generateRandomNumber = () => {
