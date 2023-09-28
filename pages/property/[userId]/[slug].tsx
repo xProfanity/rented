@@ -5,6 +5,7 @@ import Skeleton from 'react-loading-skeleton';
 
 import { Property, User } from "@/common.types";
 import { BookMark, ImageGallery, PropertyCard, Rating } from "@/components";
+import { useStateContext } from "@/context/StateContext";
 import { fetchAllUsers, fetchMorePropertiesByType, fetchPropertyBySlug, fetchUserDetails, grabHouses } from "@/services/sanity";
 import { useEffect } from "react";
 import { BsFillStarFill } from "react-icons/bs";
@@ -82,8 +83,8 @@ export async function getStaticProps({params: {slug, userid}}: ParamProps) {
 
 export default function PropertyDetails({property, properties, user}: Props) {
 
-    console.log('user', user)
-
+    const {user: authUser}: any = useStateContext()
+    
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
 
     const generateRandomNumber = () => {
@@ -247,7 +248,7 @@ export default function PropertyDetails({property, properties, user}: Props) {
                         <ul className="flex overflow-auto h-auto gap-5">
                             {properties?.map((property, index) => (
                                 <li key={`${property?.propertyId}-${index}`}>
-                                    <PropertyCard property={property} key={property?.propertyId} user={user}/>
+                                    <PropertyCard property={property} key={property?.propertyId} user={authUser}/>
                                 </li>
                             ))}
                         </ul>
