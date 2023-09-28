@@ -43,12 +43,12 @@ export async function getStaticPaths() {
     
         return {
             paths,
-            fallback: false
+            fallback: 'blocking'
         }
     } catch (error) {
         console.log('error', error)
         return {
-            paths: [],  
+            paths: [],
             fallback: true
         }
     }
@@ -66,7 +66,8 @@ export async function getStaticProps({params: {slug, userid}}: ParamProps) {
                 property,
                 properties,
                 user
-            }
+            },
+            revalidate: 10
         }
     } catch (error) {
         console.log('error', error)
