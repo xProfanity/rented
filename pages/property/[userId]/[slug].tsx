@@ -55,7 +55,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params: {slug, userid}}: ParamProps) {
-    console.log('userid', userid)
     try {
         const property:Property = await fetchPropertyBySlug(slug)
         const properties = await fetchMorePropertiesByType(property?.type, property?.propertyId)
@@ -66,7 +65,8 @@ export async function getStaticProps({params: {slug, userid}}: ParamProps) {
             props: {
                 property,
                 properties,
-                user
+                user, 
+                userid
             },
             revalidate: 10
         }
@@ -81,7 +81,9 @@ export async function getStaticProps({params: {slug, userid}}: ParamProps) {
 }
 
 
-export default function PropertyDetails({property, properties, user}: Props) {
+export default function PropertyDetails({property, properties, user, userid}: Props) {
+    console.log('userid', userid)
+
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
 
     const generateRandomNumber = () => {
