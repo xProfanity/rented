@@ -33,8 +33,10 @@ export async function getStaticPaths() {
         const items:any = property.map((house: Property) => {
             users?.map((user) => ({
                 params: {
-                    slug: house.slug.current,
-                    userid: user._id
+                    props: {
+                        userid: user._id,
+                        slug: house.slug.current,
+                    }
                 }
             }))
         })
