@@ -13,7 +13,7 @@ import { FaHashtag, FaPhone } from "react-icons/fa";
 type ParamProps = {
     params: {
         slug?: string | null;
-        userid: string;
+        id: string;
     }
 }
 
@@ -21,8 +21,6 @@ type Props = {
     property: Property;
     properties: Property[];
     user: User;
-    userid: string;
-    slug: string;
 }
 
 export async function getStaticPaths() {
@@ -33,10 +31,8 @@ export async function getStaticPaths() {
         const items:any = property.map((house: Property) => {
             users?.map((user) => ({
                 params: {
-                    props: {
-                        userid: user._id,
-                        slug: house.slug.current,
-                    }
+                    slug: house.slug.current,
+                    id: user._id
                 }
             }))
         })
@@ -58,20 +54,18 @@ export async function getStaticPaths() {
     }
 }
 
-export async function getStaticProps({params: {slug, userid}}: ParamProps) {
+export async function getStaticProps({params: {slug, id}}: ParamProps) {
     try {
         const property:Property = await fetchPropertyBySlug(slug)
         const properties = await fetchMorePropertiesByType(property?.type, property?.propertyId)
 
-        const user = await fetchUserDetails(userid)
+        const user = await fetchUserDetails(id)
 
         return {
             props: {
                 property,
                 properties,
-                user,
-                userid,
-                slug
+                user
             },
             revalidate: 10
         }
@@ -86,10 +80,9 @@ export async function getStaticProps({params: {slug, userid}}: ParamProps) {
 }
 
 
-export default function PropertyDetails({property, properties, user, userid, slug}: Props) {
-    console.log('userid', userid)
-    console.log('slug', slug)
+export default function PropertyDetails({property, properties, user}: Props) {
 
+    console.log('user', user)
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
 
     const generateRandomNumber = () => {
@@ -253,7 +246,7 @@ export default function PropertyDetails({property, properties, user, userid, slu
                         <ul className="flex overflow-auto h-auto gap-5">
                             {properties?.map((property, index) => (
                                 <li key={`${property?.propertyId}-${index}`}>
-                                    <PropertyCard property={property} key={property?.propertyId} user={user} />
+                                    <PropertyCard property={property} key={property?.propertyId} user={user}/>
                                 </li>
                             ))}
                         </ul>
