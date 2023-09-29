@@ -22,6 +22,7 @@ type Props = {
     properties: Property[];
     user: User;
     userid: string;
+    slug: string;
 }
 
 export async function getStaticPaths() {
@@ -67,7 +68,8 @@ export async function getStaticProps({params: {slug, userid}}: ParamProps) {
                 property,
                 properties,
                 user,
-                userid
+                userid,
+                slug
             },
             revalidate: 10
         }
@@ -82,8 +84,9 @@ export async function getStaticProps({params: {slug, userid}}: ParamProps) {
 }
 
 
-export default function PropertyDetails({property, properties, user, userid}: Props) {
+export default function PropertyDetails({property, properties, user, userid, slug}: Props) {
     console.log('userid', userid)
+    console.log('slug', slug)
 
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
 
