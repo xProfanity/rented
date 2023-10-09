@@ -13,7 +13,7 @@ import { FaHashtag, FaPhone } from "react-icons/fa";
 type ParamProps = {
     params: {
         slug?: string | null;
-        id: string;
+        userId: string;
     }
 }
 
@@ -32,7 +32,7 @@ export async function getStaticPaths() {
             users?.map((user) => ({
                 params: {
                     slug: house.slug.current,
-                    id: user._id
+                    userId: user._id
                 }
             }))
         })
@@ -54,12 +54,12 @@ export async function getStaticPaths() {
     }
 }
 
-export async function getStaticProps({params: {slug, id}}: ParamProps) {
+export async function getStaticProps({params: {slug, userId}}: ParamProps) {
     try {
         const property:Property = await fetchPropertyBySlug(slug)
         const properties = await fetchMorePropertiesByType(property?.type, property?.propertyId)
 
-        const user = await fetchUserDetails(id)
+        const user = await fetchUserDetails(userId)
 
         return {
             props: {
@@ -82,7 +82,6 @@ export async function getStaticProps({params: {slug, id}}: ParamProps) {
 
 export default function PropertyDetails({property, properties, user}: Props) {
 
-    console.log('user', user)
     const discountedPrice = Math.round(property?.price * ((100 - property?.discountPercentage) / 100))
 
     const generateRandomNumber = () => {
