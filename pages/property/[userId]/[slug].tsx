@@ -5,6 +5,7 @@ import Skeleton from 'react-loading-skeleton';
 
 import { Property, User } from "@/common.types";
 import { BookMark, ImageGallery, PropertyCard, Rating } from "@/components";
+import getStripe from '@/lib/getStripe';
 import { fetchAllUsers, fetchMorePropertiesByType, fetchPropertyBySlug, fetchUserDetails, grabHouses } from "@/services/sanity";
 import { useEffect } from "react";
 import { BsFillStarFill } from "react-icons/bs";
@@ -93,6 +94,23 @@ export default function PropertyDetails({property, properties, user}: Props) {
     const {status} = useSession()
 
     const router = useRouter()
+
+    const handleCheckout = async (property: Property) =>  {
+        const stripe = await getStripe()
+
+        const response = await fetch('/api/stripe', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(property)
+        })
+
+        if(response.status === 500) return
+
+        const data = await response.json()
+        stripe.redirectToCheckout({sessionId: data.id})
+    }
 
     useEffect(() => {
         const getPropertyReviews = async () => {
@@ -211,7 +229,7 @@ export default function PropertyDetails({property, properties, user}: Props) {
                                 </div>
 
                                 <div className="flex flex-row justify-evenly mt-2 gap-2 items-center">
-                                    <button type="button" className="p-3 rounded-lg flex-1 bg-gray-400 font-bold text-sm">Rent</button>
+                                    <button type="button" className="p-3 rounded-lg flex-1 bg-gray-400 font-bold text-sm" onClick={() => handleCheckout(property)} >Rent</button>
                                     <button type="button" className="p-3 rounded-lg bg-primary text-white font-bold text-sm">Arrange a visit</button>
                                 </div>
 
