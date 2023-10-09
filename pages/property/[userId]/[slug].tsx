@@ -106,6 +106,8 @@ export default function PropertyDetails({property, properties, user}: Props) {
             body: JSON.stringify(property)
         })
 
+        console.log('response', response)
+
         if(response.status === 500) return
 
         const data = await response.json()
