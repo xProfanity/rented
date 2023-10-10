@@ -1,5 +1,6 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import nProgress from "nprogress";
 import { FaLocationDot } from "react-icons/fa6";
 import Skeleton from 'react-loading-skeleton';
 
@@ -96,6 +97,9 @@ export default function PropertyDetails({property, properties, user}: Props) {
     const router = useRouter()
 
     const handleCheckout = async (property: Property) =>  {
+
+        nProgress.start()
+
         const stripe = await getStripe()
 
         const response = await fetch('/api/stripe', {
@@ -108,9 +112,13 @@ export default function PropertyDetails({property, properties, user}: Props) {
 
         console.log('response', response)
 
-        if(response.status === 500) return
+        if(response.status === 500) {
+            return nProgress.done()
+        }
 
         const data = await response.json()
+
+        nProgress.done()
         stripe.redirectToCheckout({sessionId: data.id})
     }
 
