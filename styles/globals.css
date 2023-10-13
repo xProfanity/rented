@@ -12,3 +12,7 @@
     background: #010536;
     border-radius: 12px;
 }
+
+body {
+    scroll-behavior: smooth;
+}
