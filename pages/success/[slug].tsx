@@ -2,10 +2,40 @@ import Image from 'next/image';
 
 import { Property } from "@/common.types";
 import { urlFor } from '@/lib/sanity';
-import { fetchPropertyBySlug } from "@/services/sanity";
+import { fetchPropertyBySlug, grabHouses } from "@/services/sanity";
 
 type Props = {
   property: Property | null;
+}
+
+export async function getStaticPaths() {
+  const property = await grabHouses() as Property[]
+
+  const paths = property?.map((property) => ({
+    params: {
+      slug: property.slug
+    }
+  }))
+  
+  return {
+    paths,
+    fallback: 'blocking'
+  }
+}
+
+type ParamProps = {
+  params: {
+    slug: string;
+  }
+}
+export async function getStaticProps({params: {slug}}: ParamProps) {
+  const property = await fetchPropertyBySlug(slug)
+
+  return {
+    props: {
+      property
+    }
+  }
 }
 
 export default function Success({property}: Props) {
@@ -25,18 +55,3 @@ export default function Success({property}: Props) {
   )
 }
 
-type ParamProps = {
-  params: {
-    slug: string;
-  }
-}
-
-export async function getStaticProps({params: {slug}}: ParamProps) {
-  const property = await fetchPropertyBySlug(slug)
-
-  return {
-    props: {
-      property
-    }
-  }
-}
