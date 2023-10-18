@@ -27,7 +27,7 @@ export default function About() {
         </div>
       </div>
 
-      <section className="mt-20 h-auto min-h-screen w-full">
+      <section className="mt-20 h-auto w-full">
           <Testimonials />
         </section>
     </div>

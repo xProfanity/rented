@@ -29,7 +29,7 @@ export default function Home({featured, users, properties}: Props) {
           <WhyUs />
         </section>
 
-        <section className="mt-20 h-auto min-h-screen w-full">
+        <section className="mt-20 h-auto w-full">
           <Testimonials />
         </section>
 

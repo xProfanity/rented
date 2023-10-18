@@ -18,7 +18,7 @@ export default function Navbar() {
     const {status} = useSession()
 
   return (
-    <nav className="h-20 w-full flex-1 z-40 backdrop-blur-sm border-b-2 border-white fixed">
+    <nav className="h-20 w-full flex-1 z-40 backdrop-blur-sm backdrop-saturate-200 border-b-2 border-white fixed">
         <div className="h-full w-[95%] flex flex-row justify-between items-center mx-auto">
             <Link href={'/'}>
                 <Image
