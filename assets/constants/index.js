@@ -1,7 +1,16 @@
 export const menu = [
-    "Properties",
-    "About",
-    "Contact"
+    {
+        link: "properties",
+        name: "Properties"
+    },
+    {
+        link: "about",
+        name: "About"
+    },
+    {
+        link: "#contact",
+        name: "Contact"
+    }
 ]
 
 export const heroSlogan = "You can discover your next home in a few clicks."

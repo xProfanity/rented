@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
-import { AboutUs, charming } from "@/assets";
+import { AboutUs, Keys } from "@/assets";
+import { Testimonials } from '@/components';
 
 export default function About() {
   return (
@@ -9,22 +10,26 @@ export default function About() {
         <p className="text-6xl text-primary font-bold">About us</p>
       </div>
 
-      <div className="h-screen w-11/12 flex flex-col md:flex-row gap-16 justify-center items-center">
-        <div className='md:w-1/2 w-11/12 h-full flex flex-col justify-start items-start'>
+      <div className="min-h-screen h-auto w-11/12 flex flex-col-reverse md:flex-row gap-16 justify-center items-center">
+        <div className='md:w-2/3 w-11/12 h-auto flex flex-col justify-start items-start'>
           <p className="text-2xl text-gray-700 text-left">
             {AboutUs}
           </p>
         </div>
-        <div className='w-1/2 h-full flex flex-col justify-start items-start'>
+        <div className='w-1/3 h-full flex flex-col justify-start items-start'>
           <Image
-            src={charming}
+            src={Keys}
             alt="house"
-            height={500}
-            width={600}
-            className="object-contain border-2 border-primary lg:-rotate-3 rounded-2xl shadow-lg shadow-primary"
+            height={600}
+            width={530}
+            className="object-contain"
           />
         </div>
       </div>
+
+      <section className="mt-20 h-auto min-h-screen w-full">
+          <Testimonials />
+        </section>
     </div>
   )
 }

@@ -30,11 +30,11 @@ export default function Navbar() {
             </Link>
             <div className="h-[80%] flex-wrap bg-gray-200 rounded-full hidden md:block">
                 <ul className="w-[28rem] lg:w-[35rem] flex flex-row justify-center items-center h-full gap-20">
-                    {menu.map((item, index) => (
+                    {menu.map(({link, name}, index) => (
                         <li key={index}>
-                            <Link href={`${item.toLowerCase()}`}>
-                                <p className={`${asPath === `/#${item.toLowerCase()}` ? "text-[#010536] font-bold" : "font-bold text-sm"}`}>
-                                    {item}
+                            <Link href={link}>
+                                <p className={`${asPath === `/#${name.toLowerCase()}` ? "text-[#010536] font-bold" : "font-bold text-sm"}`}>
+                                    {name}
                                 </p>
                             </Link>
                         </li>

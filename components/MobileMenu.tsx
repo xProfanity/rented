@@ -71,12 +71,12 @@ export default function MobileMenu() {
             <div className="mt-4 w-[90%] mx-auto">
                 <ul className="w-full flex flex-col">
                     {
-                        menu.map((item, index) => (
+                        menu.map(({link, name}, index) => (
                             <li key={index} className="h-10 w-full flex flex-col justify-center items-center">
                                 <button>
-                                    <Link href={`#${item.toLowerCase()}`}>
-                                        <p className={`${asPath === `/#${item.toLowerCase()}` ? "text-[#010536] font-bold" : "font-bold text-sm"}`}>
-                                        {item}
+                                    <Link href={link}>
+                                        <p className={`${asPath === `/#${link.toLowerCase()}` ? "text-[#010536] font-bold" : "font-bold text-sm"}`}>
+                                        {name}
                                     </p>
                                     </Link>
                                 </button>
