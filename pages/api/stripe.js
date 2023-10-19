@@ -35,7 +35,7 @@ export default async function handler(req, res) {
                     },
                 ],
                 mode: 'payment',
-                success_url: `${req.headers.origin}/success/${property.slug}/?success=true`,
+                success_url: `${req.headers.origin}/success/${property.slug.current}/?success=true`,
                 cancel_url: `${req.headers.origin}/?canceled=true`,
             }
 

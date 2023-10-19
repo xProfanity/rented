@@ -41,8 +41,8 @@ export async function getStaticProps({params: {slug}}: ParamProps) {
 export default function Success({property}: Props) {
   return (
     <div className="h-screen w-full flex flex-col justify-center items-center">
-      <div className="h-auto w-full flex flex-col justify-center items-center gap-10">
-        <p className="text-black font-bold text-3xl text-center">You have successfully rented {property?.title}</p>
+      <div className="h-auto w-full flex flex-col justify-center items-center gap-10 mt-14">
+        <p className="text-primary font-bold text-2xl md:text-3xl text-center w-11/12 md:w-2/3">You have successfully purchased {property?.title}</p>
         <Image
           src={urlFor(property?.thumbnail).height(400).width(400).url()}
           height={400}
