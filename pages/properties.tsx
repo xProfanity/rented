@@ -17,15 +17,15 @@ export default function PropertiesPage({
     const {user}: any = useStateContext()
     const loggedInUser = users?.filter((dbUser) => dbUser.email === user?.email)[0]
     return (
-        <>
-            <section className="mt-20 h-auto min-h-screen-w-full">
-            <Properties properties={properties} user={loggedInUser} />
+        <div className="flex flex-col justify-start items-center w-full">
+            <section className="mt-36 h-auto min-h-screen w-full">
+                <Properties properties={properties} user={loggedInUser} />
             </section>
             
             <section className="mt-20 h-auto min-h-screen w-full">
-            <TopFeatured featured={featured} user={loggedInUser} />
+                <TopFeatured featured={featured} user={loggedInUser} />
             </section>
-        </>
+        </div>
     )
 }
 
