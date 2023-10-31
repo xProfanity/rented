@@ -19,6 +19,9 @@ export default function PropertiesPage({
     return (
         <div className="flex flex-col justify-start items-center w-full">
             <section className="mt-36 h-auto min-h-screen w-full">
+                <p>intro section</p>
+            </section>
+            <section className="mt-36 h-auto min-h-screen w-full">
                 <Properties properties={properties} user={loggedInUser} />
             </section>
             
