@@ -1,3 +1,5 @@
+import { Auth, } from ".."
+
 export const menu = [
     {
         link: "properties",
@@ -90,3 +92,11 @@ export const whyUs = [
 ]
 
 export const AboutUs = "At Rented, we're not just in the business of renting houses; we're in the business of creating homes. We understand that finding the perfect place to live is about more than just square footage and location; it's about finding your sanctuary, your retreat, and your launchpad for all of life's adventures. Our journey began with a simple belief: Everyone deserves a space that reflects their dreams and aspirations. With a commitment to innovation, unparalleled customer service, and a deep passion for connecting people with their ideal homes, we've transformed the renting experience. Our team of experts works tirelessly to curate a diverse selection of exceptional properties, ensuring that every listing on our platform is a place you'll be proud to call 'home.' Welcome to a world of endless possibilities, where renting becomes an exhilarating journey towards the lifestyle you've always imagined. Your story begins here, with Rented."
+
+export const overviews = [
+    {
+        title: 'Sign up account',
+        subText: 'sign up an account to have access to properties',
+        image: Auth
+    }
+]

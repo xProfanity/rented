@@ -1,5 +1,6 @@
 import { charming, heroSlogan, heroSub } from "@/assets";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -7,9 +8,11 @@ export default function HeroSection() {
         <div className="h-full col-span-2 lg:col-span-1 mx-auto flex flex-col justify-center items-center lg:items-start w-full">
             <p className="text-5xl md:text-6xl text-black font-bold w-full text-center lg:text-left">{heroSlogan}</p>
             <p className="text-4xl text-gray-700 mt-10 text-center lg:text-left">{heroSub}</p>
-            <button type="button" className="p-4 bg-primary text-white text-base font-bold rounded-lg mt-10">
-                Get Started
-            </button>
+            <Link href={"/properties"}>
+                <button type="button" className="p-4 bg-primary text-white text-base font-bold rounded-lg mt-10">
+                    Get Started
+                </button>
+            </Link>
         </div>
         <div className="col-span-2 lg:col-span-1 mx-auto flex flex-col justify-center items-center">
             <Image 
