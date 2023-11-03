@@ -1,4 +1,4 @@
-import { Auth, } from ".."
+import { Auth, HoldingKeys, NewHome, Welcome } from ".."
 
 export const menu = [
     {
@@ -98,5 +98,20 @@ export const overviews = [
         title: 'Sign up account',
         subText: 'sign up an account to have access to properties',
         image: Auth
-    }
+    },
+    {
+        title: 'Browse Houses',
+        subText: 'search and discover available and houses at cheap prices and amazing discounts',
+        image: Welcome
+    },
+    {
+        title: 'Schedule visits',
+        subText: 'set a up a visit at any date you want and check out the desirable house in person',
+        image: NewHome
+    },
+    {
+        title: 'Rent a house',
+        subText: 'Finally rent and secure a house with any card you own on our safe payment gateway',
+        image: HoldingKeys
+    },
 ]
