@@ -33,6 +33,9 @@ const OverviewCard = ({overview}: Props) => (
             fill
             className='absolute object-cover rounded-sm md:rounded-lg xl:rounded-xl'
         />
+        <div className='absolute'>
+            
+        </div>
     </div>
 )
 
