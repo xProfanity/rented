@@ -1,6 +1,5 @@
 import Image, { StaticImageData } from 'next/image';
 
-import Appwrap from "@/HOC/Appwrap";
 import { overviews } from "@/assets";
 
 function Overview() {
@@ -39,4 +38,4 @@ const OverviewCard = ({overview}: Props) => (
     </div>
 )
 
-export default Appwrap(Overview)
+export default Overview
