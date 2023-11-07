@@ -25,15 +25,18 @@ interface Props {
 }
 
 const OverviewCard = ({overview}: Props) => (
-    <div className='h-96 w-96 relative'>
+    <div className='h-96 w-96 relative overflow-hidden rounded-sm md:rounded-lg xl:rounded-xl'>
         <Image
             src={overview.image}
             alt='overview thumb'
             fill
-            className='absolute object-cover rounded-sm md:rounded-lg xl:rounded-xl'
+            className='absolute object-cover'
         />
-        <div className='absolute'>
-            
+        <div className='absolute h-full w-full flex flex-col justify-end items-center'>
+            <div className='py-10 px-5 flex flex-col justify-center items-center gap-5 bg-slate-200'>
+                <h1 className='font-bold text-xl text-primary capitalize'>{overview.title}</h1>
+                <p className='text-lg text-primary text-center'>{overview.subText}</p>
+            </div>
         </div>
     </div>
 )
