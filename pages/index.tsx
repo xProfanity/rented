@@ -1,4 +1,4 @@
-import { HeroSection, Overview } from "@/components";
+import { Features, HeroSection, Overview } from "@/components";
 
 
 
@@ -9,6 +9,8 @@ export default function Home() {
         <HeroSection />
 
         <Overview />
+
+        <Features />
 
     </div>
   )
