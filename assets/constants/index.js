@@ -119,22 +119,22 @@ export const overviews = [
 export const services = [
     {
         title: 'property listings',
-        description: 'Our real estate rental app provides an extensive database of available houses and apartments for rent. Users can easily search and browse through property listings by various criteria, such as location, size, price range, and amenities. Detailed property descriptions, high-quality photos, and virtual tours help renters make informed decisions.',
+        description: 'Browse a wide selection of rental properties, from apartments to houses, with detailed descriptions, high-quality photos, and pricing information. Find your ideal home quickly and easily.',
         icon: ''
     },
     {
-        title: 'Advanced Search and Filters',
-        description: 'We offer powerful search and filtering options to make finding the perfect rental property a breeze. Users can refine their search based on specific preferences, such as the number of bedrooms and bathrooms, pet-friendly options, parking availability, and more. Our app ensures that users can tailor their search to match their unique requirements.',
+        title: 'Search and Filters',
+        description: 'Use advanced search and filter options to refine your property search based on location, budget, number of bedrooms, and other key criteria. Find the perfect rental that meets your specific needs.',
         icon: ''
     },
     {
-        title: 'Property Management Tools',
-        description: 'For landlords and property owners, our app provides a suite of property management tools. You can easily list your properties, update availability, set rental prices, and communicate with potential tenants. Additionally, we offer features like online rent payment processing, maintenance request management, and lease document storage to streamline property management tasks.',
+        title: 'Zoom interiors',
+        description: 'Explore properties virtually through provided room tours. Get a real feel for the layout, design, and ambiance of each rental, saving you time and effort in your house-hunting process.',
         icon: ''
     },
     {
-        title: 'Neighborhood Insights and Resources',
-        description: "We understand that choosing the right neighborhood is essential when renting a house or apartment. Our app includes valuable information about the neighborhoods where properties are located. Users can access data on schools, public transportation, nearby amenities, and safety ratings to help them make informed decisions about their future home. We also provide resources like moving checklists, renter's guides, and legal information to support a smooth rental process.",
+        title: 'Schedule Viewings',
+        description: "Request property viewings at your convenience, and our platform will connect you with landlords or agents. Schedule visits to your shortlisted homes and make informed decisions about your next rental.",
         icon: ''
     },
 ]

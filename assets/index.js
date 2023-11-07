@@ -11,7 +11,7 @@ import RentedWhite from './images/rented-white.png'
 import Rented from './images/rented.png'
 import Welcome from './images/welcoming.jpg'
 
-import { AboutUs, filtersByType, heroSlogan, heroSub, menu, overviews, ratingStars } from './constants/index'
+import { AboutUs, filtersByType, heroSlogan, heroSub, menu, overviews, ratingStars, services } from './constants/index'
 
-export { AboutUs, Auth, HoldingKeys, Keys, Logo, NewHome, Rented, RentedColor, RentedWhite, Welcome, charming, filtersByType, heroSlogan, heroSub, house, menu, model, overviews, ratingStars }
+export { AboutUs, Auth, HoldingKeys, Keys, Logo, NewHome, Rented, RentedColor, RentedWhite, Welcome, charming, filtersByType, heroSlogan, heroSub, house, menu, model, overviews, ratingStars, services }
 
