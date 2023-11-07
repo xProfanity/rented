@@ -115,3 +115,26 @@ export const overviews = [
         image: HoldingKeys
     },
 ]
+
+export const services = [
+    {
+        title: 'property listings',
+        description: 'Our real estate rental app provides an extensive database of available houses and apartments for rent. Users can easily search and browse through property listings by various criteria, such as location, size, price range, and amenities. Detailed property descriptions, high-quality photos, and virtual tours help renters make informed decisions.',
+        icon: ''
+    },
+    {
+        title: 'Advanced Search and Filters',
+        description: 'We offer powerful search and filtering options to make finding the perfect rental property a breeze. Users can refine their search based on specific preferences, such as the number of bedrooms and bathrooms, pet-friendly options, parking availability, and more. Our app ensures that users can tailor their search to match their unique requirements.',
+        icon: ''
+    },
+    {
+        title: 'Property Management Tools',
+        description: 'For landlords and property owners, our app provides a suite of property management tools. You can easily list your properties, update availability, set rental prices, and communicate with potential tenants. Additionally, we offer features like online rent payment processing, maintenance request management, and lease document storage to streamline property management tasks.',
+        icon: ''
+    },
+    {
+        title: 'Neighborhood Insights and Resources',
+        description: "We understand that choosing the right neighborhood is essential when renting a house or apartment. Our app includes valuable information about the neighborhoods where properties are located. Users can access data on schools, public transportation, nearby amenities, and safety ratings to help them make informed decisions about their future home. We also provide resources like moving checklists, renter's guides, and legal information to support a smooth rental process.",
+        icon: ''
+    },
+]
