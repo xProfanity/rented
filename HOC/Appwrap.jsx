@@ -1,6 +1,6 @@
 const Appwrap = (Component, header, subtitle) => function HOC() {
   return (
-    <div className="w-[95%] mt-36 mx-auto flex flex-col justify-start items-center">
+    <section className="w-[95%] mt-36 mx-auto flex flex-col justify-start items-center">
         {header && (
           <div className="w-full flex flex-row justify-center items-center">
               <p className="text-6xl text-primary font-semibold capitalize">{header}</p>
@@ -13,7 +13,7 @@ const Appwrap = (Component, header, subtitle) => function HOC() {
           )}
           <Component />
         </div>
-    </div>
+    </section>
   )
 }
 

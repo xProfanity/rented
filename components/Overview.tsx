@@ -5,7 +5,7 @@ import { overviews } from "@/assets";
 function Overview() {
   return (
     <div className="min-h-screen h-auto py-16 w-full flex flex-col justify-center items-center">
-        <div className="h-full w-full flex flex-wrap justify-center items-center gap-10 flex-row">
+        <div className="h-full w-full grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-y-10">
             {overviews.map((item, index) => (
                 <OverviewCard overview={item} key={index} />
             ))}
@@ -25,7 +25,7 @@ interface Props {
 }
 
 const OverviewCard = ({overview}: Props) => (
-    <div className='h-96 w-96 relative overflow-hidden rounded-sm md:rounded-lg xl:rounded-xl'>
+    <div className='h-96 w-96 col-span-1 mx-auto relative overflow-hidden rounded-sm md:rounded-lg xl:rounded-xl'>
         <Image
             src={overview.image}
             alt='overview thumb'
