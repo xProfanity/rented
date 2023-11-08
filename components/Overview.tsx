@@ -25,7 +25,7 @@ interface Props {
 }
 
 const OverviewCard = ({overview}: Props) => (
-    <div className='h-96 w-96 col-span-1 mx-auto relative overflow-hidden rounded-sm md:rounded-lg xl:rounded-xl'>
+    <div className='h-96 w-72 md:w-96 col-span-1 mx-auto relative overflow-hidden rounded-sm md:rounded-lg xl:rounded-xl'>
         <Image
             src={overview.image}
             alt='overview thumb'

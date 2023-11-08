@@ -16,7 +16,7 @@ const Services = () => {
             className="object-contain"
           />
         </div>
-        <div className="w-[55%] grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-10">
+        <div className="w-full lg:w-[55%] grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-10">
           {services.map((service, index) => (
             <Service key={index} number={index+1} service={service} />
           ))}
@@ -41,7 +41,7 @@ const Service = ({number, service}: Props) => (
       <span className="font-bold text-white text-base">{number}</span>
     </div>
     <h1 className="text-primary capitalize text-xl font-bold">{service.title}</h1>
-    <p className="text-sm text-gray-500">{service.description}</p>
+    <p className="text-sm text-gray-500 text-center md:text-left">{service.description}</p>
   </div>
 )
 
