@@ -1,5 +1,7 @@
 import { Footer, MobileMenu, Navbar } from '@/components'
 import '@/styles/globals.css'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import type { AppProps } from 'next/app'
 import Router from 'next/router'
 import nProgress from 'nprogress'
@@ -10,7 +12,7 @@ import { SessionProvider } from 'next-auth/react'
 
 export default function App({ Component, pageProps: {session, ...pageProps} }: AppProps) {
   nProgress.configure({
-    showSpinner: true,
+    showSpinner: !1,
   })
 
   Router.events.on('routeChangeStart', () => {
@@ -22,12 +24,14 @@ export default function App({ Component, pageProps: {session, ...pageProps} }: A
   return (
     <>
       <SessionProvider session={session}>
-        <StateContext>
-          <Navbar />
-          <Component {...pageProps} />
-          <Footer />
-          <MobileMenu />
-        </StateContext>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <StateContext>
+            <Navbar />
+            <Component {...pageProps} />
+            <Footer />
+            <MobileMenu />
+          </StateContext>
+        </LocalizationProvider>
       </SessionProvider>
     </>
   )

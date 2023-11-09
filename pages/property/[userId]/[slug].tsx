@@ -1,3 +1,5 @@
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { Dayjs } from "dayjs";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import nProgress from "nprogress";
@@ -7,8 +9,9 @@ import Skeleton from 'react-loading-skeleton';
 import { Property, User } from "@/common.types";
 import { BookMark, ImageGallery, PropertyCard, Rating } from "@/components";
 import getStripe from '@/lib/getStripe';
+import { GetDate } from '@/lib/utils';
 import { fetchAllUsers, fetchMorePropertiesByType, fetchPropertyBySlug, fetchUserDetails, grabHouses } from "@/services/sanity";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BsFillStarFill } from "react-icons/bs";
 import { FaHashtag, FaPhone } from "react-icons/fa";
 
@@ -95,6 +98,8 @@ export default function PropertyDetails({property, properties, user}: Props) {
     const {status} = useSession()
 
     const router = useRouter()
+
+    const [date, setDate] = useState<Dayjs | null>()
 
     const handleCheckout = async (property: Property) =>  {
 
@@ -251,6 +256,18 @@ export default function PropertyDetails({property, properties, user}: Props) {
                                         </div>
                                     ))}
                                 </div>
+
+                                <div className="mt-4 w-full flex flex-col md:flex-row justify-between items-center">
+                                    <DatePicker value={date} onChange={(date: Dayjs) => setDate(date)} />
+                                    <div className="p-3">
+                                        {date && <p className="font-bold text-xl text-primary">{GetDate(date)}</p>}
+                                    </div>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    disabled={!Boolean(date)}
+                                    className={`mt-4 rounded-lg ${Boolean(date) ? 'bg-primary text-white' : 'bg-gray-300 text-gray-300'} font-bold text-sm p-3`}>Schedule Visit</button>
                             </div>
                         </div>
                     </div>
