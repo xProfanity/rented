@@ -258,6 +258,7 @@ export default function PropertyDetails({property, properties, user}: Props) {
                                 </div>
 
                                 <div className="mt-4 w-full flex flex-col md:flex-row justify-between items-center">
+                                    //@ts-ignore
                                     <DatePicker value={date} onChange={(date: Dayjs) => setDate(date)} />
                                     <div className="p-3">
                                         {date && <p className="font-bold text-xl text-primary">{GetDate(date)}</p>}
