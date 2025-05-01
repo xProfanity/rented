@@ -59,8 +59,8 @@ export default function PropertyCard({property, user}: Props) {
                 </div>
 
                 <div className="w-full h-auto flex flex-row justify-center items-center mt-5">
-                    {user ? (
-                        <Link href={`/property/${user?._id}/${property?.slug.current}`} className="w-full">
+                    {user || process.env.NODE_ENV === 'development' ? (
+                        <Link href={`/property/${process.env.NODE_ENV === "development" ? "w2lOiWVWsOj55tPdQ2GO5r" : user?._id}/${property?.slug.current}`} className="w-full">
                             <button type="button" className="w-full h-12 inline-flex gap-2 justify-center items-center bg-primary text-sm font-bold text-white rounded-2xl">
                                 <span>Visit Property</span>
                                 <span><FaLink /></span>

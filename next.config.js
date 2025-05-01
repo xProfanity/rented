@@ -12,6 +12,7 @@ const nextConfig = {
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     STRIPE_PUBLISHABLE_KEY: process.env.STRIPE_PUBLISHABLE_KEY,
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+    PAYCHANGU_KEY: process.env.PAYCHANGU_KEY
   },
   images: {
     domains: ["lh3.googleusercontent.com", "cdn.sanity.io"]

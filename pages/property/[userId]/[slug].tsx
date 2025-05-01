@@ -101,6 +101,45 @@ export default function PropertyDetails({property, properties, user}: Props) {
 
     const [date, setDate] = useState<Dayjs | null>()
 
+    const payChangu = async (property: Property) => {
+        nProgress.start()
+
+        try {
+            const options = {
+                method: 'POST',
+                headers: {
+                  accept: 'application/json',
+                  'content-type': 'application/json',
+                  Authorization: `Bearer ${process.env.PAYCHANGU_KEY}`
+                },
+                body: JSON.stringify({
+                  currency: 'MWK',
+                  amount: property.price,
+                  tx_ref: '' + Math.floor((Math.random() * 1000000000) + 1),
+                  callback_url: 'http://localhost:3000',
+                  return_url: 'http://localhost:3000',
+                  email: user.email
+                })
+              };
+              
+            const response = await fetch('https://api.paychangu.com/payment', options)
+            
+            console.log('response', response)
+
+            const paychangu = await response.json()
+
+              console.log('paychangu', paychangu)
+
+            if(paychangu.status === "success") {
+                router.push(paychangu.data.checkout_url as string)
+                nProgress.done()
+            }
+        } catch (error) {
+            console.log('error', error)
+            nProgress.done()
+        }
+    }
+
     const handleCheckout = async (property: Property) =>  {
 
         nProgress.start()
@@ -144,7 +183,7 @@ export default function PropertyDetails({property, properties, user}: Props) {
         return <p>Loading</p>
     }
 
-    if(status === "unauthenticated") {
+    if(status === "unauthenticated" && process.env.NODE_ENV !== "development") {
         router.push('/')
     }
 
@@ -244,7 +283,7 @@ export default function PropertyDetails({property, properties, user}: Props) {
                                 </div>
 
                                 <div className="flex flex-row justify-evenly mt-2 gap-2 items-center">
-                                    <button type="button" className="p-3 rounded-lg flex-1 bg-gray-400 font-bold text-sm" onClick={() => handleCheckout(property)} >Rent</button>
+                                    <button type="button" className="p-3 rounded-lg flex-1 bg-gray-400 font-bold text-sm" onClick={() => payChangu(property)} >Rent</button>
                                     <button type="button" className="p-3 rounded-lg bg-primary text-white font-bold text-sm">Arrange a visit</button>
                                 </div>
 
@@ -258,7 +297,7 @@ export default function PropertyDetails({property, properties, user}: Props) {
                                 </div>
 
                                 <div className="mt-4 w-full flex flex-col md:flex-row justify-between items-center">
-                                    //@ts-ignore
+                                    {/* @ts-ignore */}
                                     <DatePicker value={date} onChange={(date: Dayjs | null) => setDate(date)} />
                                     <div className="p-3">
                                         {date && <p className="font-bold text-xl text-primary">{GetDate(date)}</p>}
