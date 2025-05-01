@@ -116,8 +116,8 @@ export default function PropertyDetails({property, properties, user}: Props) {
                   currency: 'MWK',
                   amount: property.price,
                   tx_ref: '' + Math.floor((Math.random() * 1000000000) + 1),
-                  callback_url: process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://rented-nine.vercel.app",
-                  return_url: process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://rented-nine.vercel.app",
+                  callback_url: process.env.NODE_ENV === "development" ? "http://localhost:3000" : `https://rented-nine.vercel.app/success/${property.slug.current}/?success=true`,
+                  return_url: process.env.NODE_ENV === "development" ? "http://localhost:3000" : `https://rented-nine.vercel.app/${user._id}/${property.slug.current}/?canceled=true`,
                   email: user.email,
                   first_name: user.username,
                   customization: {
