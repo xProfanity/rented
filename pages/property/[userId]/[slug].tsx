@@ -116,9 +116,14 @@ export default function PropertyDetails({property, properties, user}: Props) {
                   currency: 'MWK',
                   amount: property.price,
                   tx_ref: '' + Math.floor((Math.random() * 1000000000) + 1),
-                  callback_url: 'http://localhost:3000',
-                  return_url: 'http://localhost:3000',
-                  email: user.email
+                  callback_url: process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://rented-nine.vercel.app",
+                  return_url: process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://rented-nine.vercel.app",
+                  email: user.email,
+                  first_name: user.username,
+                  customization: {
+                    title: property.title,
+                    description: property.description
+                  }
                 })
               };
               
@@ -183,7 +188,7 @@ export default function PropertyDetails({property, properties, user}: Props) {
         return <p>Loading</p>
     }
 
-    if(status === "unauthenticated" && process.env.NODE_ENV !== "development") {
+    if(status === "unauthenticated") {
         router.push('/')
     }
 
